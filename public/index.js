@@ -1,21 +1,27 @@
-
-
-
-
-function preload ()
+class MainGame
 {
-}
+    constructor(config)
+    {
+        this.game = {}
+        gameStartup(config)
+    }
+    gameStartup(config)
+        {
+        this.game = new Phaser.Game(config);
 
-function create ()
-{
-}
+        }
+    preload ()
+    {
 
-function update ()
-{
-}
+    }
 
-function gameStartup(config)
-{
-    var game = new Phaser.Game(config);
+    create ()
+    {
 
+    }
+
+    update ()
+    {
+
+    }
 }
