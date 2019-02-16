@@ -34,9 +34,14 @@ var card;
 var dropZone;
 var dragPosition;
 
+function loadInitialImages()
+{
+   var background = game.add.sprite(80, 0, 'background');
+}
+
 function create()
   {
-
+    loadInitialImages();
     dropZone = game.add.sprite(500, 0, 'zone');
     dropZone.width = 300;
     dropZone.height = 600;
@@ -52,29 +57,32 @@ function create()
     card.events.onDragStop.add(onDragStop, this);
 
     dragPosition = new Phaser.Point(card.x, card.y);
+
 }
 
-
-
-function onOver(sprite, pointer) {
+function onOver(sprite, pointer)
+{
 
     sprite.tint = 0xff7777;
 
 }
 
-function onOut(sprite, pointer) {
+function onOut(sprite, pointer)
+{
 
     sprite.tint = 0xffffff;
 
 }
 
-function onDragStart(sprite, pointer) {
+function onDragStart(sprite, pointer)
+{
 
     dragPosition.set(sprite.x, sprite.y);
 
 }
 
-function onDragStop(sprite, pointer) {
+function onDragStop(sprite, pointer)
+{
 
     if (!sprite.overlap(dropZone))
     {
@@ -83,11 +91,13 @@ function onDragStop(sprite, pointer) {
 
 }
 
-function update () {
+function update ()
+{
 
 }
 
 
-function render () {
+function render ()
+{
 
 }
