@@ -1,110 +1,74 @@
-class MainGame
-{
-    constructor(config)
+
+
+function preload() {
+
+    game.load.baseURL = 'http://examples.phaser.io/assets/';
+    game.load.crossOrigin = 'anonymous';
+
+    game.load.image('eye', 'pics/lance-overdose-loader_eye.png');
+    game.load.image('zone', 'sprites/platform.png');
+
+}
+
+
+var card;
+var dropZone;
+var dragPosition;
+
+function create()
+  {
+
+    dropZone = game.add.sprite(500, 0, 'zone');
+    dropZone.width = 300;
+    dropZone.height = 600;
+
+    card = game.add.sprite(100, 100, 'eye');
+
+    card.inputEnabled = true;
+    card.input.enableDrag();
+
+    card.events.onInputOver.add(onOver, this);
+    card.events.onInputOut.add(onOut, this);
+    card.events.onDragStart.add(onDragStart, this);
+    card.events.onDragStop.add(onDragStop, this);
+
+    dragPosition = new Phaser.Point(card.x, card.y);
+}
+
+
+
+function onOver(sprite, pointer) {
+
+    sprite.tint = 0xff7777;
+
+}
+
+function onOut(sprite, pointer) {
+
+    sprite.tint = 0xffffff;
+
+}
+
+function onDragStart(sprite, pointer) {
+
+    dragPosition.set(sprite.x, sprite.y);
+
+}
+
+function onDragStop(sprite, pointer) {
+
+    if (!sprite.overlap(dropZone))
     {
-        this.game = {};
-        this.cursors = {};
-        this.player = {};
-        gameStartup(config);
+        game.add.tween(sprite).to( { x: dragPosition.x, y: dragPosition.y }, 500, "Back.easeOut", true);
     }
 
-    gameStartup(config)
-    {
-        this.game = new Phaser.Game(config);
+}
 
-    }
+function update () {
 
-
-    preload ()
-    {
-        game.load.image('background','');
-        game.load.image('player','');
-        game.load.image('clouds','');
-        game.load.image('sky','');
-
-    }
-
-    create ()
-    {
-        this.mousePos = 
-        {
-            x: 0,
-            y: 0
-        };
+}
 
 
-        this.mouseClick.on('pointerdown', function (pointer) 
-        {
-        }, this); 
-        
-        this.mouseDrag.on('drag', function (pointer, gameObject, dragX, dragY) {
+function render () {
 
-            gameObject.x = dragX;
-            gameObject.y = dragY;
-    
-        });
-
-              
-      game.add.tileSprite(0, 0, 1920, 1920, 'background');
-      game.add.tileSprite(0, 0, 1920, 1920, 'sky');
-      game.add.tileSprite(0, 0, 1920, 1920, 'clouds');
-
-      game.world.setBounds(0, 0, 800, 600);
-
-      game.physics.startSystem(Phaser.Physics.P2JS);
-
-      player = game.add.sprite(game.world.centerX, game.world.centerY, 'player');
-
-      game.physics.p2.enable(player);
-
-      cursors = game.input.keyboard.createCursorKeys();
-
-      game.camera.follow(player);
-    }
-
-    getMousePos()
-    {
-        return this.mousePos
-    }
-
-    mouseClick()
-    {
-        return this.mouseClick
-    }
-
-    mouseDrag()
-    {
-        return this.mouseDrag
-    }
-
-    update ()
-    {
-        this.mousePos.x = this.game.input.mousePointer.x;
-        this.mousePos.y = this.game.input.mousePointer.y;
-      player.body.setZeroVelocity();
-
-      if (cursors.up.isDown)
-      {
-          player.body.moveUp(300)
-      }
-      else if (cursors.down.isDown)
-      {
-          player.body.moveDown(300);
-      }
-
-      if (cursors.left.isDown)
-      {
-          player.body.velocity.x = -300;
-      }
-      else if (cursors.right.isDown)
-      {
-          player.body.moveRight(300);
-    }
-
-    function render() {
-
-        game.debug.cameraInfo(game.camera, 32, 32);
-        game.debug.spriteCoords(player, 32, 500);
-
-    }
 }
