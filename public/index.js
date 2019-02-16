@@ -26,10 +26,18 @@ class MainGame
 
     create ()
     {
-        this.mousex = 0;
-        this.mousey = 0;
+        this.mousePos = 
+        {
+            x: 0,
+            y: 0
+        };
 
+        this.mouseClick =
+        {
+            
+        }
 
+              
       game.add.tileSprite(0, 0, 1920, 1920, 'background');
       game.add.tileSprite(0, 0, 1920, 1920, 'sky');
       game.add.tileSprite(0, 0, 1920, 1920, 'clouds');
@@ -47,10 +55,20 @@ class MainGame
       game.camera.follow(player);
     }
 
+    getMousePos()
+    {
+        return this.mousePos
+    }
+
+    mouseClick()
+    {
+        return this.mouseClick
+    }
+
     update ()
     {
-        this.mousex = this.game.input.mousePointer.x;
-        this.mousey = this.game.input.mousePointer.y;
+        this.mousePos.x = this.game.input.mousePointer.x;
+        this.mousePos.y = this.game.input.mousePointer.y;
       player.body.setZeroVelocity();
 
       if (cursors.up.isDown)
