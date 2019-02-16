@@ -17,64 +17,94 @@ class MainGame
 
     preload ()
     {
-        this.game.load.image('background','');
-        this.game.load.image('player','');
-        this.game.load.image('clouds','');
-        this.game.load.image('sky','');
+        game.load.image('background','');
+        game.load.image('player','');
+        game.load.image('clouds','');
+        game.load.image('sky','');
 
     }
 
     create ()
     {
-        this.mousex = 0;
-        this.mousey = 0;
+        this.mousePos = 
+        {
+            x: 0,
+            y: 0
+        };
 
 
-      this.game.add.tileSprite(0, 0, 1920, 1920, 'background');
-      this.game.add.tileSprite(0, 0, 1920, 1920, 'sky');
-      this.game.add.tileSprite(0, 0, 1920, 1920, 'clouds');
+        this.mouseClick.on('pointerdown', function (pointer) 
+        {
+        }, this); 
+        
+        this.mouseDrag.on('drag', function (pointer, gameObject, dragX, dragY) {
 
-      this.game.world.setBounds(0, 0, 800, 600);
+            gameObject.x = dragX;
+            gameObject.y = dragY;
+    
+        });
 
-      this.game.physics.startSystem(Phaser.Physics.P2JS);
+              
+      game.add.tileSprite(0, 0, 1920, 1920, 'background');
+      game.add.tileSprite(0, 0, 1920, 1920, 'sky');
+      game.add.tileSprite(0, 0, 1920, 1920, 'clouds');
 
-      this.player = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'player');
+      game.world.setBounds(0, 0, 800, 600);
 
-      this.game.physics.p2.enable(this.player);
+      game.physics.startSystem(Phaser.Physics.P2JS);
 
-      this.cursors = this.game.input.keyboard.createCursorKeys();
+      player = game.add.sprite(game.world.centerX, game.world.centerY, 'player');
 
-      this.game.camera.follow(this.player);
+      game.physics.p2.enable(player);
+
+      cursors = game.input.keyboard.createCursorKeys();
+
+      game.camera.follow(player);
+    }
+
+    getMousePos()
+    {
+        return this.mousePos
+    }
+
+    mouseClick()
+    {
+        return this.mouseClick
+    }
+
+    mouseDrag()
+    {
+        return this.mouseDrag
     }
 
     update ()
     {
-        this.mousex = this.game.input.mousePointer.x;
-        this.mousey = this.game.input.mousePointer.y;
-        this.player.body.setZeroVelocity();
+        this.mousePos.x = this.game.input.mousePointer.x;
+        this.mousePos.y = this.game.input.mousePointer.y;
+      player.body.setZeroVelocity();
 
-      if (this.cursors.up.isDown)
+      if (cursors.up.isDown)
       {
-          this.this.player.body.moveUp(300)
+          player.body.moveUp(300)
       }
-      else if (this.cursors.down.isDown)
+      else if (cursors.down.isDown)
       {
-          this.player.body.moveDown(300);
+          player.body.moveDown(300);
       }
 
-      if (this.cursors.left.isDown)
+      if (cursors.left.isDown)
       {
-          this.player.body.velocity.x = -300;
+          player.body.velocity.x = -300;
       }
-      else if (this.cursors.right.isDown)
+      else if (cursors.right.isDown)
       {
-          this.player.body.moveRight(300);
+          player.body.moveRight(300);
     }
 
     function render() {
 
-        this.game.debug.cameraInfo(this.game.camera, 32, 32);
-        this.game.debug.spriteCoords(this.player, 32, 500);
+        game.debug.cameraInfo(game.camera, 32, 32);
+        game.debug.spriteCoords(player, 32, 500);
 
     }
 }
