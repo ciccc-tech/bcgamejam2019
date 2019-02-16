@@ -7,9 +7,10 @@ class MainGame
         this.player = {};
         gameStartup(config);
     }
+    
     gameStartup(config)
     {
-      this.game = new Phaser.Game(config);
+        this.game = new Phaser.Game(config);
 
     }
 
@@ -25,6 +26,10 @@ class MainGame
 
     create ()
     {
+        this.mousex = 0;
+        this.mousey = 0;
+            
+              
       game.add.tileSprite(0, 0, 1920, 1920, 'background');
       game.add.tileSprite(0, 0, 1920, 1920, 'sky');
       game.add.tileSprite(0, 0, 1920, 1920, 'clouds');
@@ -44,6 +49,8 @@ class MainGame
 
     update ()
     {
+        this.mousex = this.game.input.mousePointer.x;
+        this.mousey = this.game.input.mousePointer.y;
       player.body.setZeroVelocity();
 
       if (cursors.up.isDown)
