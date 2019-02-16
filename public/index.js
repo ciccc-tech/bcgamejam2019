@@ -10,6 +10,7 @@ class MainGame
         this.game = new Phaser.Game(config);
 
         }
+
     preload ()
     {
 
