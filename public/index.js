@@ -11,7 +11,7 @@ function preload() {
 }
 
 
-var card;
+
 var dropZone;
 var dragPosition;
 
@@ -22,17 +22,15 @@ function create()
     dropZone.width = 300;
     dropZone.height = 600;
 
-    card = game.add.sprite(100, 100, 'eye');
+    inputEnabled = true;
+    input.enableDrag();
 
-    card.inputEnabled = true;
-    card.input.enableDrag();
+    events.onInputOver.add(onOver, this);
+    events.onInputOut.add(onOut, this);
+    events.onDragStart.add(onDragStart, this);
+    events.onDragStop.add(onDragStop, this);
 
-    card.events.onInputOver.add(onOver, this);
-    card.events.onInputOut.add(onOut, this);
-    card.events.onDragStart.add(onDragStart, this);
-    card.events.onDragStop.add(onDragStop, this);
-
-    dragPosition = new Phaser.Point(card.x, card.y);
+    dragPosition = new Phaser.Point x,   y);
 }
 
 
