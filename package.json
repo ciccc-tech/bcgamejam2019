@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/ivanincanada/bcgamejam2019/issues"
   },
-  "homepage": "https://github.com/ivanincanada/bcgamejam2019#readme", 
+  "homepage": "https://github.com/ivanincanada/bcgamejam2019#readme",
   "dependencies": {
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
