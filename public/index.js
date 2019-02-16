@@ -17,82 +17,64 @@ class MainGame
 
     preload ()
     {
-        game.load.image('background','');
-        game.load.image('player','');
-        game.load.image('clouds','');
-        game.load.image('sky','');
+        this.game.load.image('background','');
+        this.game.load.image('player','');
+        this.game.load.image('clouds','');
+        this.game.load.image('sky','');
 
     }
 
     create ()
     {
-        this.mousePos = 
-        {
-            x: 0,
-            y: 0
-        };
+        this.mousex = 0;
+        this.mousey = 0;
 
-        this.mouseClick =
-        {
-            
-        }
 
-              
-      game.add.tileSprite(0, 0, 1920, 1920, 'background');
-      game.add.tileSprite(0, 0, 1920, 1920, 'sky');
-      game.add.tileSprite(0, 0, 1920, 1920, 'clouds');
+      this.game.add.tileSprite(0, 0, 1920, 1920, 'background');
+      this.game.add.tileSprite(0, 0, 1920, 1920, 'sky');
+      this.game.add.tileSprite(0, 0, 1920, 1920, 'clouds');
 
-      game.world.setBounds(0, 0, 800, 600);
+      this.game.world.setBounds(0, 0, 800, 600);
 
-      game.physics.startSystem(Phaser.Physics.P2JS);
+      this.game.physics.startSystem(Phaser.Physics.P2JS);
 
-      player = game.add.sprite(game.world.centerX, game.world.centerY, 'player');
+      this.player = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'player');
 
-      game.physics.p2.enable(player);
+      this.game.physics.p2.enable(this.player);
 
-      cursors = game.input.keyboard.createCursorKeys();
+      this.cursors = this.game.input.keyboard.createCursorKeys();
 
-      game.camera.follow(player);
-    }
-
-    getMousePos()
-    {
-        return this.mousePos
-    }
-
-    mouseClick()
-    {
-        return this.mouseClick
+      this.game.camera.follow(this.player);
     }
 
     update ()
     {
-        this.mousePos.x = this.game.input.mousePointer.x;
-        this.mousePos.y = this.game.input.mousePointer.y;
-      player.body.setZeroVelocity();
+        this.mousex = this.game.input.mousePointer.x;
+        this.mousey = this.game.input.mousePointer.y;
+        this.player.body.setZeroVelocity();
 
-      if (cursors.up.isDown)
+      if (this.cursors.up.isDown)
       {
-          player.body.moveUp(300)
+          this.this.player.body.moveUp(300)
       }
-      else if (cursors.down.isDown)
+      else if (this.cursors.down.isDown)
       {
-          player.body.moveDown(300);
+          this.player.body.moveDown(300);
       }
 
-      if (cursors.left.isDown)
+      if (this.cursors.left.isDown)
       {
-          player.body.velocity.x = -300;
+          this.player.body.velocity.x = -300;
       }
-      else if (cursors.right.isDown)
+      else if (this.cursors.right.isDown)
       {
-          player.body.moveRight(300);
+          this.player.body.moveRight(300);
     }
 
     function render() {
 
-        game.debug.cameraInfo(game.camera, 32, 32);
-        game.debug.spriteCoords(player, 32, 500);
+        this.game.debug.cameraInfo(this.game.camera, 32, 32);
+        this.game.debug.spriteCoords(this.player, 32, 500);
 
     }
 }
