@@ -445,7 +445,7 @@ var config = {
     version: "0.0.1",
 
     input: {keyboard:	true, mouse: true},
-    pixelArt:	false,
+    pixelArt:	true,
     clearBeforeRender:	true,
     backgroundColor: 0,
     transparent: false,
@@ -496,58 +496,3 @@ class BackgroundWidget extends GenericWidget
 // =====================================================================================================
 // here we create an insteance of the phaser engine
 var game = new Phaser.Game(config);
-
-/*
-    //loadRender is called during the Loader process.
-    // This only happens if you've set one or more assets to load in the preload method.
-    //The difference between loadRender and render is that any objects you render in this method
-    // you must be sure their assets exist first.
-    function loadRender()
-    {}
-
-
-
-    //loadUpdate is called during the Loader process.
-    // This only happens if you've set one or more assets to load in the preload method.
-    function loadUpdate()
-    {}
-
-
-    //This method will be called if the core game loop is paused.
-    function paused()
-    {}
-
-
-    // pauseUpdate is called while the game is paused instead of preUpdate, update and postUpdate.
-    function pauseUpdate()
-    {}
-
-
-
-    //The preRender method is called after all Game Objects have been updated, but before any rendering takes place.
-    function preRender()
-    {}
-
-
-
-
-    // If your game is set to Scalemode RESIZE then each time the browser resizes it will call this function,
-    // passing in the new width and height.
-    function resize()
-    {}
-
-    //This method will be called when the core game loop resumes from a paused state.
-    function resumed()
-    {}
-
-
-    //This method will be called when the State is shutdown (i.e. you switch to another state from this one).
-    function shutdown()
-    {}
-
-
-    //The update method is left empty for your own use.
-    //It is called during the core game loop AFTER debug, physics, plugins and the Stage have had their preUpdate methods
-    //called. If is called BEFORE Stage, Tweens, Sounds, Input, Physics, Particles and Plugins have had their postUpdate methods called.
-    function update()
-    {}*/
