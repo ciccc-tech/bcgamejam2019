@@ -28,7 +28,6 @@ var ImagesToLoad = [
   ['night_icon', 'assets/night_icon.png'],
   ['norwester', 'assets/norwester.otf'],
   ['pointer', 'assets/pointer.png'],
-  ['readme', 'assets/ReadMe.rtf'],
   ['rough_sketch_ver1.2', 'assets/rough_sketch_ver1.2.jpg'],
   ['time_frame', 'assets/time_frame.png'],
   ['walk_block', 'assets/walk_block.png']
