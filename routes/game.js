@@ -22,7 +22,7 @@ module.exports = router;
 var get_file_name = function(id){
     file_path = "/tmp/";
     file_type = ".json";
-    return file_path + id + file_type; 
+    return file_path + id + file_type;
 }
 
 var generate_room = function(id=0, light_status=false, people_status=false){
@@ -45,7 +45,6 @@ var building_default_params = {
 };
 
 var generateBuilding =  function(building_params, power_params){
-    current_building_power = power_default_params.current;
     new_rooms = []
     number_rooms = building_params.floors * building_params.rooms;
     rooms_with_people = randomRooms(number_rooms);
@@ -60,7 +59,8 @@ var generateBuilding =  function(building_params, power_params){
     };
     new_building = {
         "id": uuidv1(), //generating random id
-        "current_power": current_building_power,
+        "current_power": power_default_params.current,
+        "total_power": power_default_params.total,
         "rooms": new_rooms
 
     };
@@ -91,7 +91,7 @@ var saveBuilding = function(id, content){
 
         console.log("The file " + get_file_name(id) + " was saved!");
     });
-} 
+}
 
 var spentPower = function(power_current, power_spent){
     power_current -= power_spent;

@@ -1,102 +1,104 @@
-{  
-   "id":"e0a21450-327d-11e9-8103-496ef28df904",
-   "rooms":[  
-      {  
+{
+   "id":"9484cbb0-3289-11e9-bf7a-edc312c01a1b",
+   "current_power":80,
+   "total_power":100,
+   "rooms":[
+      {
          "id":0,
          "light":false,
          "people":false
       },
-      {  
+      {
          "id":1,
          "light":false,
          "people":false
       },
-      {  
+      {
          "id":2,
-         "light":false,
-         "people":false
+         "light":true,
+         "people":true
       },
-      {  
+      {
          "id":3,
          "light":false,
          "people":false
       },
-      {  
+      {
          "id":4,
-         "light":true,
-         "people":true
+         "light":false,
+         "people":false
       },
-      {  
+      {
          "id":5,
          "light":false,
          "people":false
       },
-      {  
+      {
          "id":6,
          "light":false,
          "people":false
       },
-      {  
+      {
          "id":7,
          "light":false,
          "people":false
       },
-      {  
+      {
          "id":8,
          "light":false,
          "people":false
       },
-      {  
+      {
          "id":9,
          "light":false,
          "people":false
       },
-      {  
+      {
          "id":10,
-         "light":false,
-         "people":false
+         "light":true,
+         "people":true
       },
-      {  
+      {
          "id":11,
          "light":false,
          "people":false
       },
-      {  
+      {
          "id":12,
          "light":false,
          "people":false
       },
-      {  
+      {
          "id":13,
-         "light":true,
-         "people":true
+         "light":false,
+         "people":false
       },
-      {  
+      {
          "id":14,
          "light":false,
          "people":false
       },
-      {  
+      {
          "id":15,
          "light":false,
          "people":false
       },
-      {  
+      {
          "id":16,
          "light":false,
          "people":false
       },
-      {  
+      {
          "id":17,
          "light":false,
          "people":false
       },
-      {  
+      {
          "id":18,
          "light":false,
          "people":false
       },
-      {  
+      {
          "id":19,
          "light":false,
          "people":false
