@@ -6,7 +6,7 @@ var lockText;
 function preload()
 {
 
-    this.load.baseURL = 'localhost:3000';
+    this.load.baseURL = 'localhost:80';
     this.load.crossOrigin = 'anonymous';
 
     this.load.image('background', './assets/background.png');
