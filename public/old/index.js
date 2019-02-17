@@ -9,6 +9,9 @@
         type: Phaser.AUTO,
         width: 800,
         height: 600,
+        audio: {
+        disableWebAudio: true
+              }
         physics: {
             default: 'arcade',
             arcade: {
