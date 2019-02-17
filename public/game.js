@@ -2,6 +2,31 @@ var ImagesToLoad = [
   ['background', 'assets/background.png'],
   ['building', 'assets/building.png'],
   ['elevator_room', 'assets/elevator_room.png'],
+  ['bar_color', 'assets/bar_color.png'],
+  ['bar_frame', 'assets/bar_frame.png'],
+  ['calendar', 'assets/calendar.png'],
+  ['character', 'assets/character.png'],
+  ['click_point', 'assets/click_point.png'],
+  ['dark_room_block', 'assets/dark_room_block.png'],
+  ['day_icon', 'assets/day_icon.png'],
+  ['door-close2', 'assets/door-close2.png'],
+  ['door', 'assets/door.png'],
+  ['elevator_room', 'assets/elevator_room.png'],
+  ['elevator', 'assets/elevator.png'],
+  ['energy_color', 'assets/energy_color.png'],
+  ['energy_frame', 'assets/energy_frame.png'],
+  ['energy_max', 'assets/energy_max.png'],
+  ['floor_block', 'assets/floor_block.png'],
+  ['fluorescent_switch1', 'assets/fluorescent_switch1.png'],
+  ['night_icon', 'assets/night_icon.png'],
+  ['norwester', 'assets/norwester.otf'],
+  ['pointer', 'assets/pointer.png'],
+  ['readme', 'assets/ReadMe.rtf'],
+  ['rough_sketch_ver1.2', 'assets/rough_sketch_ver1.2.jpg'],
+  ['time_frame', 'assets/time_frame.png'],
+  ['walk-asphalt2', 'assets/walk-asphalt2.mp3'],
+  ['walk_block', 'assets/walk_block.png']
+
 
 ];
 
