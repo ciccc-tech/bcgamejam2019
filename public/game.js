@@ -2,7 +2,7 @@ var ImagesToLoad = [
   ['background', 'assets/background.png'],
   ['building', 'assets/building.png'],
   ['elevator_room', 'assets/elevator_room.png'],
-  ['elevator','assets/elevator.png'],
+
 ];
 
 
@@ -12,6 +12,10 @@ var SpritesToLoad = [
   ['character','assets/character.png'],
   ['elevator','assets/elevator.png']
 ];
+
+var JSONToLoad = [
+   [1,2]
+]
 
 
 var MusicToLoad = [
@@ -208,7 +212,7 @@ class TitleScene extends BaseScene
 
 
 
-// This Class will describe the 'Title' scene
+
 class GameScene extends BaseScene
   {
 
@@ -309,7 +313,7 @@ class GameScene extends BaseScene
             }
           }, 0, this);
 
-      
+
 
     // Optionally, you can subscribe to the game's pointer lock change event to know when the player
     // enters/exits pointer lock. This is useful if you need to update the UI, change to a custom
