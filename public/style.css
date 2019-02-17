@@ -1,0 +1,56 @@
+.navBar {
+    text-align: center;
+    background-color: #000000;
+    box-shadow: 2px 0px 2px #000000;
+    height: 70px;
+    margin: 0px;
+    line-height: 70px;
+    
+}
+
+.navBar li {
+    display: inline-block;
+    vertical-align: middle;
+
+}
+
+.navBar a, i {
+    text-decoration: none;
+    font-size: 40px;
+    padding-right: 5px;
+    margin-right: 45px;
+    font-family: 'Rajdhani';
+    color: #bbede8;
+    -webkit-transition: color 0.5s;
+    transition: color 0.5s;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.navBar a:hover {
+    color: #67fff0;
+    
+}
+
+.navBar i:hover {
+    color: #67fff0;
+    
+}
+
+body {
+    margin: 0;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #bbede8;
+    color: #000000;
+    text-align: center;
+ }
+
+ .fa {
+     color: #bbede8;
+ }
