@@ -58,8 +58,6 @@ var SoundFXToLoad = [
   ['click_sound', 'assets/click_sound.wav'],
   ['aibackground', 'assets/AIbackground.wav'],
   ['gameover', 'assets/Game Over.wav']
-
-
 ];
 
 
@@ -96,7 +94,7 @@ class Scene extends Phaser.Scene
   }
 
   static _preloadAssetSprites(fromScene, assetList2DArray)
-     {
+  {
      for (var i = 0; i < assetList2DArray.length; i++)
        {
        this.log("Preloading Sprites: " + assetList2DArray[i][0] + " from " + assetList2DArray[i][1]);
@@ -191,11 +189,18 @@ class DefaultScene extends BaseScene
     preload ()
     {
       this.log("Preload Called", this.name);
+      this.load.audio('aibackground', [
+     'assets/audio/oedipus_wizball_highscore.ogg',
+     'assets/AIbackground.wav'
+      ]);
     }
 
     create ()
     {
         this.log("Create Called", this.name);
+        var music = this.sound.add('theme');
+
+        music.play();
 
     }
 
@@ -388,7 +393,7 @@ class GameScene extends BaseScene
           'Press Q to release pointer lock.'
           ]);
         }
-      }
+  }
 // =====================================================================================================
 
 
