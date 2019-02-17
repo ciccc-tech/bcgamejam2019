@@ -2,7 +2,7 @@
 BC Game Jam
 
 ## Requirements
-NodeJS 10: https://nodejs.org/en/download/ 
+NodeJS 10: https://nodejs.org/en/download/
 
 ## Setup
 Clone the project:
@@ -26,7 +26,7 @@ Start the server:
 ```bash
 npm start
 ```
-Check your game! http://localhost:3000 
+Check your game! http://localhost:3000
 
 ## Backend
 
@@ -42,3 +42,11 @@ Generate a building and return a JSON representation. [SAMPLE](samples/game/star
 #### `/game/:buildingId`
 
 Retrieve the current state of the game. [SAMPLE](samples/games/:buildingId)
+
+#### `/game/:buildingId/lighton/roomId`
+
+Turn light of the room on
+
+#### `/game/:buildingId/lightoff/roomId`
+
+Turn light of the room off
