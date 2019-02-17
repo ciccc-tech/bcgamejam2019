@@ -115,6 +115,16 @@ class Scene extends Phaser.Scene
        }
   }
 
+  static _preloadAssetFX(fromScene, assetList2DArray)
+  {
+     for (var i = 0; i < assetList2DArray.length; i++)
+       {
+       this.log("Preloading FX: " + assetList2DArray[i][0] + " from " + assetList2DArray[i][1]);
+
+       fromScene.load.image(assetList2DArray[i][0], assetList2DArray[i][1]);
+       }
+  }
+
   static _switchScene(fromScene, toSceneName)
     {
     this.log("SWITCHING TO SCENE: [" + toSceneName +"]")
@@ -209,6 +219,7 @@ class DefaultScene extends BaseScene
       Scene._preloadAssetImages(this,ImagesToLoad);
       Scene._preloadAssetSprites(this,SpritesToLoad);
       Scene._preloadAssetMusic(this, MusicToLoad);
+      Scene._preloadAssetMusic(this SoundFXToLoad)
 
     }
 
@@ -462,10 +473,10 @@ var config = {
     },
     audio:
     {
-    disableWebAudio: false
+    disableWebAudio: true
   },
 
-    scene: [DefaultScene,GameScene, TitleScene]
+    scene: [DefaultScene,TitleScene,GameScene]
 };
 // =====================================================================================================
 
