@@ -104,3 +104,8 @@ function render ()
  {
 
 }
+
+
+
+
+  var game = new Phaser.Game(config);
