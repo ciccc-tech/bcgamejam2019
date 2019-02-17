@@ -33,19 +33,26 @@ var building = {
 };
 
 var generateBuilding =  function(building_params){
-    building = [];
+    new_building = [];
     number_rooms = building_params.floors * building_params.rooms;
+    rooms_with_people = randomRooms(number_rooms);
     for (i = 0; i < number_rooms; i++) {
-            building.push(generate_room(i));
+        new_room = []    
+        if (rooms_with_people.includes(i)) {
+            new_room = generate_room(i, true, true);
+        } else {
+            new_room = generate_room(i);
+        }
+        new_building.push(new_room);
     };
-    return building;
+    return new_building;
 };
 
-var randomRooms = function(room_qty = 100, difficulty_percentage = 10){
+var randomRooms = function(room_qty = 20, difficulty_percentage = 10){
     rooms_random = [];
     difficulty = room_qty*(difficulty_percentage/100)
     while (rooms_random.length < difficulty) {
-        random_number = Math.floor((Math.random() * room_qty) + 1);
+        random_number = Math.floor((Math.random() * room_qty-1) + 1);
         if(!rooms_random.includes(random_number)){
             rooms_random.push(random_number);
         };
