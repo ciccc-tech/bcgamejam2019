@@ -56,10 +56,8 @@ var MusicToLoad = [
 var SoundFXToLoad = [
   ['elevator_sound', 'assets/elevator_sound.wav'],
   ['click_sound', 'assets/click_sound.wav'],
-  ['ai background', 'assets/AI Background.wav'],
-  ['game over', 'assets/Game Over.wav']
-
-
+  ['aibackground', 'assets/aibackground.wav'],
+  ['gameover', 'assets/gameover.wav']
 ];
 
 
@@ -96,7 +94,7 @@ class Scene extends Phaser.Scene
   }
 
   static _preloadAssetSprites(fromScene, assetList2DArray)
-     {
+  {
      for (var i = 0; i < assetList2DArray.length; i++)
        {
        this.log("Preloading Sprites: " + assetList2DArray[i][0] + " from " + assetList2DArray[i][1]);
@@ -195,12 +193,19 @@ class DefaultScene extends BaseScene
     preload ()
     {
       this.log("Preload Called", this.name);
+      this.load.audio('aibackground','assets/AIbackground.wav');
+        ['aibackground', 'assets/aibackground.wav']
     }
 
     create ()
     {
         this.log("Create Called", this.name);
+<<<<<<< HEAD
           this.background = new BackgroundWidget(this,'background',(config.width / 2), (config.height / 2));
+=======
+        var music = this.sound.add('aibackground');
+        music.play();
+>>>>>>> origin/master
 
     }
 
@@ -438,6 +443,10 @@ var config = {
             fps: 30
         }
     },
+    audio:
+    {
+    disableWebAudio: true
+  },
 
     scene: [DefaultScene,GameScene, TitleScene]
 };
