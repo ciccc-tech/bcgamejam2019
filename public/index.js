@@ -33,9 +33,7 @@ function preload()
 }
 
 
-var card;
-var dropZone;
-var dragPosition;
+
 
 function create()
   {
