@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery.getJSON demo</title>
+  <style>
+  img {
+    height: 100px;
+    float: left;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+
+<div id="images"></div>
+
+<script>
+
+function parseData(url)
+{
+  var jsonData = requestJson(url);
+  var obj = JSON.parse(jsonData);
+  console.log(obj);
+  return obj;
+};
+
+function requestJson(url)
+{
+  var data = [];
+  return $.getJSON( url, function(data){
+    {
+      return data;
+    }
+  })
+  .done(function( data )
+        {
+          return data;
+        }
+
+        );
+};
+
+// console.log(requestJson('https://bcgamejam2019.herokuapp.com/game/start'));
+// requestJson('https://bcgamejam2019.herokuapp.com/game/start');
+parseData('https://bcgamejam2019.herokuapp.com/game/start');
+
+function showData(Object)
+{
+  // for (value in Object)
+  // {
+  //   console.log(Object.id);
+  // }
+
+  return Object.values(data);
+}
+
+// showData(parseData('https://bcgamejam2019.herokuapp.com/game/start'))
+
+</script>
+
+</body>
+</html>
