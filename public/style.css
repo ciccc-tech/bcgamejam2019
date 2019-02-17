@@ -8,7 +8,7 @@
     
 }
 
-.navBar li, i {
+.navBar li {
     display: inline-block;
     vertical-align: middle;
 
@@ -21,12 +21,19 @@
     margin-right: 45px;
     font-family: 'Rajdhani';
     color: #bbede8;
-    -webkit-transition: color 0.5s; /* For Safari 3.1 to 6.0 */
+    -webkit-transition: color 0.5s;
     transition: color 0.5s;
+    display: flex;
+    flex-direction: column;
     
 }
 
 .navBar a:hover {
+    color: #67fff0;
+    
+}
+
+.navBar i:hover {
     color: #67fff0;
     
 }
@@ -46,5 +53,4 @@ footer {
 
  .fa {
      color: #bbede8;
-     font-size: 44px;
  }
