@@ -3,7 +3,7 @@ var mousePos = {}
 var sprite;
 var lockText;
 
-
+\
 
 
 function preload()
@@ -12,7 +12,7 @@ function preload()
     this.load.baseURL = 'localhost:80';
     this.load.crossOrigin = 'anonymous';
 
-    this.load.image('background', './assets/background.png');
+    this.load.image('background', 'assets/background.png');
     // this.load.image('bar_color', '/assets/bar_color.png');
     // this.load.image('bar_frame', '/assets/bar_frame.png');
     // this.load.image('building', '/assets/building.png');
