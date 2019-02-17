@@ -40,3 +40,15 @@ var generateBuilding =  function(building_params){
     };
     return building;
 };
+
+var randomRooms = function(room_qty = 100, difficulty_percentage = 10){
+    rooms_random = [];
+    difficulty = room_qty*(difficulty_percentage/100)
+    while (rooms_random.length < difficulty) {
+        random_number = Math.floor((Math.random() * room_qty) + 1);
+        if(!rooms_random.includes(random_number)){
+            rooms_random.push(random_number);
+        };
+    };
+    return rooms_random;
+};
