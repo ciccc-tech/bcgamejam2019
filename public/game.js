@@ -23,6 +23,7 @@ var ImagesToLoad = [
   ['energy_max', 'assets/energy_max.png'],
   ['floor_block', 'assets/floor_block.png'],
   ['game_title', 'assets/game_title.png'],
+  ['game_over', 'assets/game_over.png'],
   ['light', 'assets/light.png'],
   ['next_destination', 'assets/next_destination.png'],
   ['night_icon', 'assets/night_icon.png'],
