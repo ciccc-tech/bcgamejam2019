@@ -1,16 +1,18 @@
 var express = require('express');
 var router = express.Router();
+const fs = require('fs');
+const uuidv1 = require('uuid/v1');
 
 /* GET game states. */
 router.get('/start', function(req, res, next) {
-  res.json(generateBuilding(building));
+  res.json(generateBuilding(building_default_params));
 });
 
 router.get('/end', function(req, res, next) {
   res.send('game over');
 });
 
-module.exports = router;
+module.exports = router; 
 
 
 var generate_room = function(id=0, light_status=false, people_status=false){
@@ -27,13 +29,14 @@ var power = {
     "current": 100
 };
 
-var building = {
+var building_default_params = {
     "floors": 10,
     "rooms": 2
 };
 
 var generateBuilding =  function(building_params){
-    new_building = [];
+    
+    new_rooms = []
     number_rooms = building_params.floors * building_params.rooms;
     rooms_with_people = randomRooms(number_rooms);
     for (i = 0; i < number_rooms; i++) {
@@ -43,8 +46,13 @@ var generateBuilding =  function(building_params){
         } else {
             new_room = generate_room(i);
         }
-        new_building.push(new_room);
+        new_rooms.push(new_room);
     };
+    new_building = {
+        "id": uuidv1(),
+        "rooms": new_rooms
+    }; 
+    saveBuilding(new_building['id'], new_building);
     return new_building;
 };
 
@@ -59,3 +67,15 @@ var randomRooms = function(room_qty = 20, difficulty_percentage = 10){
     };
     return rooms_random;
 };
+
+
+var saveBuilding = function(id, content){
+    fs.writeFile("/tmp/" + id + ".json", JSON.stringify(content), function(err) {
+        if(err) {
+            return console.log(err);
+        }
+
+        console.log("The file was saved!");
+    }); 
+
+}
