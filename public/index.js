@@ -1,4 +1,7 @@
 
+var mousePos = {}
+var sprite;
+var lockText;
 
 function preload()
 {
@@ -27,7 +30,9 @@ function preload()
     this.load.image('time_frame', '../assets/time_frame.png');
     this.load.image('wall_block', '../assets/wall_block.png');
 
+
 }
+
 
 var card;
 var dropZone;
@@ -40,63 +45,59 @@ function loadInitialImages()
 
 function create()
   {
-    loadInitialImages();
-    dropZone = this.add.sprite(500, 0, 'zone');
+
+    dropZone = game.add.sprite(500, 0, 'zone');
     dropZone.width = 300;
     dropZone.height = 600;
 
-    card = this.add.sprite(100, 100, 'eye');
+    card = game.add.sprite(100, 100, 'eye');
 
-    card.inputEnabled = true;
-    card.input.enableDrag();
+        if (this.input.mouse.locked)
+        {
+            sprite.x += pointer.movementX;
+            sprite.y += pointer.movementY;
 
-    card.events.onInputOver.add(onOver, this);
-    card.events.onInputOut.add(onOut, this);
-    card.events.onDragStart.add(onDragStart, this);
-    card.events.onDragStop.add(onDragStop, this);
+            // Force the sprite to stay on screen
+            sprite.x = Phaser.Math.Wrap(sprite.x, 0, game.renderer.width);
+            sprite.y = Phaser.Math.Wrap(sprite.y, 0, game.renderer.height);
 
     dragPosition = new Phaser.Point(card.x, card.y);
-
 }
 
-function onOver(sprite, pointer)
-{
+
+
+function onOver(sprite, pointer) {
 
     sprite.tint = 0xff7777;
 
 }
 
-function onOut(sprite, pointer)
-{
+function onOut(sprite, pointer) {
 
-    sprite.tint = 0xffffff;
 
 }
 
-function onDragStart(sprite, pointer)
+function onDragStart(sprite, pointer) {
+
+
+function update () 
 {
 
-    dragPosition.set(sprite.x, sprite.y);
-
-}
-
-function onDragStop(sprite, pointer)
-{
+function onDragStop(sprite, pointer) {
 
     if (!sprite.overlap(dropZone))
     {
-        this.add.tween(sprite).to( { x: dragPosition.x, y: dragPosition.y }, 500, "Back.easeOut", true);
+        game.add.tween(sprite).to( { x: dragPosition.x, y: dragPosition.y }, 500, "Back.easeOut", true);
     }
 
 }
 
-function update ()
+function update () {
+
+function render () 
 {
 
-}
 
-
-function render ()
-{
+function render () {
 
 }
