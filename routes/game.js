@@ -3,9 +3,14 @@ var router = express.Router();
 const fs = require('fs');
 const uuidv1 = require('uuid/v1');
 
-/* GET game states. */
+/* GET initial game state. */
 router.get('/start', function(req, res, next) {
   res.json(generateBuilding(building_default_params));
+});
+
+/* GET current game state */
+router.get('/:buildingId', function(req, res, next) {
+    res.json(retrieveBuilding(req.params['buildingId']));
 });
 
 router.get('/end', function(req, res, next) {
@@ -14,6 +19,11 @@ router.get('/end', function(req, res, next) {
 
 module.exports = router; 
 
+var get_file_name = function(id){
+    file_path = "/tmp/";
+    file_type = ".json";
+    return file_path + id + file_type; 
+}
 
 var generate_room = function(id=0, light_status=false, people_status=false){
     room = {
@@ -70,12 +80,16 @@ var randomRooms = function(room_qty = 20, difficulty_percentage = 10){
 
 
 var saveBuilding = function(id, content){
-    fs.writeFile("/tmp/" + id + ".json", JSON.stringify(content), function(err) {
+    fs.writeFile(get_file_name(id), JSON.stringify(content), function(err) {
         if(err) {
             return console.log(err);
         }
 
-        console.log("The file was saved!");
+        console.log("The file " + get_file_name(id) + " was saved!");
     }); 
 
+}
+
+var retrieveBuilding = function(id){
+    return JSON.parse(fs.readFileSync(get_file_name(id), 'utf8'));
 }

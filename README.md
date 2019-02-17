@@ -35,7 +35,10 @@ Check your game! http://localhost:3000
 
 All the available actions have sample JSON responses in the `samples/`
 
-#### /game/start
+#### `/game/start`
 
-Generate a building and return a JSON representation.
+Generate a building and return a JSON representation. [SAMPLE](samples/game/start)
 
+#### `/game/:buildingId`
+
+Retrieve the current state of the game. [SAMPLE](samples/games/:buildingId)
