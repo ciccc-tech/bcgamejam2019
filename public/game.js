@@ -282,7 +282,9 @@ class GameScene extends BaseScene
       this.log("Create Called",this.name);
       this.input.mouse.capture = true;
       //  A simple background for our game
-      this.background =      this.add.image((config.width / 2), (config.height / 2), 'background');
+      //this.background =      this.add.image((config.width / 2), (config.height / 2), 'background');
+      this.background = new BackgroundWidget(this,'background',(config.width / 2), (config.height / 2));
+
       this.building =        this.add.image((config.width / 1.5), (config.height / 2), 'building');
       this.elevator_room =   this.add.image((config.width/ 2.8), (config.height / 2), 'elevator_room');
       this.elevator =        this.add.image((config.width/2.8), (config.height / 1.175), 'elevator');
@@ -353,9 +355,11 @@ class GameScene extends BaseScene
       }, 0, this);
 
 
-    this.updateLockText(true);
+    this.updateLockText(false);
 
     this.lockText = this.add.text(120, 10, '', { fill: '#00ff00' }).setDepth(1);
+
+
     }
 
 
@@ -395,7 +399,7 @@ var config = {
     type: Phaser.AUTO,
     width: 1336,
     height: 768,
-    zoom: 1,
+    zoom: 1.1,
     resolution: 1,
     seed : 42,
 
@@ -426,6 +430,25 @@ var config = {
 };
 // =====================================================================================================
 
+class GenericWidget
+  {
+  constructor(inScene, imageName, posX, posY)
+    {
+    this.image =      inScene.add.image( posX, posY, imageName);
+    this.posX = posX;
+    this.posY = posY;
+    }
+  }
+
+
+// WIDGETS
+class BackgroundWidget extends GenericWidget
+  {
+    constructor(inScene, imageName, posX, posY)
+    {
+      super(inScene,imageName,posX,posY);
+    }
+  }
 
 
 
