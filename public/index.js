@@ -37,14 +37,10 @@ var card;
 var dropZone;
 var dragPosition;
 
-function loadInitialImages()
-{
-   var background = this.add.image(400, 300, 'background');
-}
-
 function create()
   {
-    loadInitialImages();
+    var background = this.add.sprite(400, 300, 'background');
+
     dropZone = game.add.sprite(500, 0, 'zone');
     dropZone.width = 300;
     dropZone.height = 600;
