@@ -8,7 +8,6 @@ var ImagesToLoad = [
   ['building', 'assets/building.png'],
   ['elevator', 'assets/elevator.png'],
   ['elevator_room', 'assets/elevator_room.png'],
-
   ['bar_color', 'assets/bar_color.png'],
   ['bar_frame', 'assets/bar_frame.png'],
   ['calendar', 'assets/calendar.png'],
@@ -58,6 +57,8 @@ var MusicToLoad = [
 var SoundFXToLoad = [
   ['elevator_sound', 'assets/elevator_sound.wav'],
   ['click_sound', 'assets/click_sound.wav'],
+  ['ai background', 'assets/AI Background.wav'],
+  ['game over', 'assets/Game Over.wav']
 
 
 ];
