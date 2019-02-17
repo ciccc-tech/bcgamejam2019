@@ -220,7 +220,7 @@ class DefaultScene extends BaseScene
       Scene._preloadAssetImages(this,ImagesToLoad);
       Scene._preloadAssetSprites(this,SpritesToLoad);
       Scene._preloadAssetMusic(this, MusicToLoad);
-      Scene._preloadAssetMusic(this SoundFXToLoad)
+      Scene._preloadAssetFX(this,SoundFXToLoad)
 
     }
 
@@ -228,7 +228,7 @@ class DefaultScene extends BaseScene
     {
         this.log("Create Called", this.name);
 
-          this.background = new BackgroundWidget(this,'background',(config.width / 2), (config.height / 2));
+          this.background = new BackgroundWidget(this,'background_a',(config.width / 2), (config.height / 2));
 
         this.music = this.sound.add('aibackground');
         this.music.play({loop:true});
