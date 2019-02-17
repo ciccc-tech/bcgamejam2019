@@ -305,19 +305,32 @@ class GameScene extends BaseScene
 
     preload ()
       {
+
         this.log("preload Called",this.name);
         Scene._preloadAssetImages(this,ImagesToLoad);
         Scene._preloadAssetSprites(this,SpritesToLoad);
+
+        //Shimba added this part for the interface - start
+        this.load.image('elevator','assets/elevator.png');
+        //Shimba added this part for the interface - start
+
 
     }
 
     create ()
       {
+      //Shimba added this part for the interface - start
+      this.add.image((config.width/ 2), (config.height / 2), 'elevator');
+      //Shimba added this part for the interface -end
+
+
       this.log("Create Called",this.name);
       this.input.mouse.capture = true;
       //  A simple background for our game
       //this.background =      this.add.image((config.width / 2), (config.height / 2), 'background');
       this.background = new BackgroundWidget(this,'background',(config.width / 2), (config.height / 2));
+
+      this.walls = [];
 
       this.building =        this.add.image((config.width / 1.5), (config.height / 2), 'building');
       this.elevator_room =   this.add.image((config.width/ 2.8), (config.height / 2), 'elevator_room');
@@ -432,7 +445,7 @@ class GameScene extends BaseScene
 var config = {
     type: Phaser.AUTO,
     width: 1336,
-    height: 768,
+    height: 720,
     zoom: 1.1,
     resolution: 1,
     seed : 42,
@@ -444,7 +457,7 @@ var config = {
     version: "0.0.1",
 
     input: {keyboard:	true, mouse: true},
-    pixelArt:	false,
+    pixelArt:	true,
     clearBeforeRender:	true,
     backgroundColor: 0,
     transparent: false,
@@ -495,58 +508,3 @@ class BackgroundWidget extends GenericWidget
 // =====================================================================================================
 // here we create an insteance of the phaser engine
 var game = new Phaser.Game(config);
-
-/*
-    //loadRender is called during the Loader process.
-    // This only happens if you've set one or more assets to load in the preload method.
-    //The difference between loadRender and render is that any objects you render in this method
-    // you must be sure their assets exist first.
-    function loadRender()
-    {}
-
-
-
-    //loadUpdate is called during the Loader process.
-    // This only happens if you've set one or more assets to load in the preload method.
-    function loadUpdate()
-    {}
-
-
-    //This method will be called if the core game loop is paused.
-    function paused()
-    {}
-
-
-    // pauseUpdate is called while the game is paused instead of preUpdate, update and postUpdate.
-    function pauseUpdate()
-    {}
-
-
-
-    //The preRender method is called after all Game Objects have been updated, but before any rendering takes place.
-    function preRender()
-    {}
-
-
-
-
-    // If your game is set to Scalemode RESIZE then each time the browser resizes it will call this function,
-    // passing in the new width and height.
-    function resize()
-    {}
-
-    //This method will be called when the core game loop resumes from a paused state.
-    function resumed()
-    {}
-
-
-    //This method will be called when the State is shutdown (i.e. you switch to another state from this one).
-    function shutdown()
-    {}
-
-
-    //The update method is left empty for your own use.
-    //It is called during the core game loop AFTER debug, physics, plugins and the Stage have had their preUpdate methods
-    //called. If is called BEFORE Stage, Tweens, Sounds, Input, Physics, Particles and Plugins have had their postUpdate methods called.
-    function update()
-    {}*/
