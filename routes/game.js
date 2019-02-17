@@ -178,7 +178,7 @@ var updateRoomLightOff = function(id_building, id_room){
     });
 }
 
-var getCurrentRoomsOnPercentage = function(id_building){
+var getCurrentLightsOnPercentage = function(id_building){
     building_file = JSON.parse(fs.readFileSync(get_file_name(id_building), 'utf8'));
     room_qty = building_file.rooms.length;
     room_light_on_qty = 0;
@@ -190,19 +190,13 @@ var getCurrentRoomsOnPercentage = function(id_building){
     return 100*(room_light_on_qty/room_qty);
 };
 
-var decreasingBuildingPower = function(id) {
+var decreaseBuildingPower = function(id) {
     building = JSON.parse(fs.readFileSync(get_file_name(id), 'utf8'));
     current_power = building.current_power
-    game = setInterval( function(){
-        console.log("Cycle of " + id)
-        if (current_power <= 0){
-          gameOver(id);
-        }
-        for i in building.rooms {
-          if((!i.people) && i.light){
+    for i in building.rooms {
+        if((!i.people) && i.light){
             current_power--
             updateBuildingPower(id, current_power);
-          }
         }
-    }, 1000);//1000 = 1 second
+    }
 };
