@@ -1,21 +1,20 @@
-function readJson(someData)
+function readJson(url)
 {
-  fetch('http://time.jsontest.com')
+  let afterParse;
+  fetch(url)
     .then(res => res.json())
-    .then((out) => {
-                    console.log('Output: ', out);
-                    }
-         ).catch(err => console.error(err));
+    .then((jsonData) => {
+                  afterParse = [];
+                  for (var i = 0; i < jsonData.length; i++)
+                  {
+                    var obj = JSON.parse(jsonData[i]);
+                    afterParse.push(obj);
+                  }
+                  return afterParse;
+                                }
+         )
+    .catch(err => console.error(err));
+
 }
 
-function parseJson(someData)
-{
-  let jsonData = readJson(someData);
-  let afterParse = [];
-  for (var i = 0; i < jsonData.length; i++)
-  {
-    var obj = JSON.parse(jsonData[i]);
-    afterParse.push(obj);
-  }
-  return afterParse;
-}
+readJson(URL);
