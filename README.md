@@ -27,3 +27,15 @@ Start the server:
 npm start
 ```
 Check your game! http://localhost:3000 
+
+## Backend
+
+
+### Available actions
+
+All the available actions have sample JSON responses in the `samples/`
+
+#### /game/start
+
+Generate a building and return a JSON representation.
+
