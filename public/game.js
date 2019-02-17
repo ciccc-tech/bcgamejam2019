@@ -16,7 +16,7 @@ var ImagesToLoad = [
   ['click_point', 'assets/click_point.png'],
   ['dark_room_block', 'assets/dark_room_block.png'],
   ['day_icon', 'assets/day_icon.png'],
-  ['door-close2', 'assets/door-close2.png'],
+
   ['door', 'assets/door.png'],
   ['energy_color', 'assets/energy_color.png'],
   ['energy_frame', 'assets/energy_frame.png'],
@@ -30,9 +30,7 @@ var ImagesToLoad = [
   ['norwester', 'assets/norwester.otf'],
   ['pointer', 'assets/pointer.png'],
   ['rough_sketch_ver1.2', 'assets/rough_sketch_ver1.2.jpg'],
-  ['time_frame', 'assets/time_frame.png'],
-  ['walk_block', 'assets/walk_block.png']
-
+  ['time_frame', 'assets/time_frame.png']
 ];
 
 
@@ -50,6 +48,7 @@ var JSONToLoad = [
 
 var MusicToLoad = [
   ['fluorescent_switch1', 'assets/fluorescent_switch1.mp3'],
+    ['aibackground', 'assets/aibackground.wav'],
   ['walk-asphalt2', 'assets/walk-asphalt2.mp3'],
 
 
@@ -58,7 +57,7 @@ var MusicToLoad = [
 var SoundFXToLoad = [
   ['elevator_sound', 'assets/elevator_sound.wav'],
   ['click_sound', 'assets/click_sound.wav'],
-  ['aibackground', 'assets/aibackground.wav'],
+
   ['gameover', 'assets/gameover.wav']
 ];
 
@@ -100,6 +99,17 @@ class Scene extends Phaser.Scene
      for (var i = 0; i < assetList2DArray.length; i++)
        {
        this.log("Preloading Sprites: " + assetList2DArray[i][0] + " from " + assetList2DArray[i][1]);
+
+       fromScene.load.image(assetList2DArray[i][0], assetList2DArray[i][1]);
+       }
+  }
+
+
+  static _preloadAssetMusic(fromScene, assetList2DArray)
+  {
+     for (var i = 0; i < assetList2DArray.length; i++)
+       {
+       this.log("Preloading Music: " + assetList2DArray[i][0] + " from " + assetList2DArray[i][1]);
 
        fromScene.load.image(assetList2DArray[i][0], assetList2DArray[i][1]);
        }
@@ -195,8 +205,11 @@ class DefaultScene extends BaseScene
     preload ()
     {
       this.log("Preload Called", this.name);
-      this.load.audio('aibackground','assets/AIbackground.wav');
-        ['aibackground', 'assets/aibackground.wav']
+
+      Scene._preloadAssetImages(this,ImagesToLoad);
+      Scene._preloadAssetSprites(this,SpritesToLoad);
+      Scene._preloadAssetMusic(this, MusicToLoad);
+
     }
 
     create ()
@@ -205,8 +218,8 @@ class DefaultScene extends BaseScene
 
           this.background = new BackgroundWidget(this,'background',(config.width / 2), (config.height / 2));
 
-        var music = this.sound.add('aibackground');
-        music.play();
+        this.music = this.sound.add('aibackground');
+        this.music.play({loop:true});
 
 
     }
@@ -447,7 +460,7 @@ var config = {
     },
     audio:
     {
-    disableWebAudio: true
+    disableWebAudio: false
   },
 
     scene: [DefaultScene,GameScene, TitleScene]
