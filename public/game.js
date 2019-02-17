@@ -6,31 +6,32 @@ var API_StartGame = 'https://bcgamejam2019.herokuapp.com/game/start'
 var ImagesToLoad = [
   ['background', 'assets/background.png'],
   ['building', 'assets/building.png'],
+  ['elevator', 'assets/elevator.png'],
   ['elevator_room', 'assets/elevator_room.png'],
 
   ['bar_color', 'assets/bar_color.png'],
   ['bar_frame', 'assets/bar_frame.png'],
   ['calendar', 'assets/calendar.png'],
   ['character', 'assets/character.png'],
+  ['character_left', 'assets/character_left.png'],
   ['click_point', 'assets/click_point.png'],
   ['dark_room_block', 'assets/dark_room_block.png'],
   ['day_icon', 'assets/day_icon.png'],
   ['door-close2', 'assets/door-close2.png'],
   ['door', 'assets/door.png'],
-  ['elevator_room', 'assets/elevator_room.png'],
-  ['elevator', 'assets/elevator.png'],
   ['energy_color', 'assets/energy_color.png'],
   ['energy_frame', 'assets/energy_frame.png'],
   ['energy_max', 'assets/energy_max.png'],
   ['floor_block', 'assets/floor_block.png'],
-  ['fluorescent_switch1', 'assets/fluorescent_switch1.png'],
+  ['game_title', 'assets/game_title.png'],
+  ['light', 'assets/light.png'],
+  ['next_destination', 'assets/next_destination.png'],
   ['night_icon', 'assets/night_icon.png'],
   ['norwester', 'assets/norwester.otf'],
   ['pointer', 'assets/pointer.png'],
   ['readme', 'assets/ReadMe.rtf'],
   ['rough_sketch_ver1.2', 'assets/rough_sketch_ver1.2.jpg'],
   ['time_frame', 'assets/time_frame.png'],
-  ['walk-asphalt2', 'assets/walk-asphalt2.mp3'],
   ['walk_block', 'assets/walk_block.png']
 ];
 
@@ -48,15 +49,17 @@ var JSONToLoad = [
 
 
 var MusicToLoad = [
-  [1, 2],
-  [3, 4],
-  [5, 6]
+  ['fluorescent_switch1', 'assets/fluorescent_switch1.mp3'],
+  ['walk-asphalt2', 'assets/walk-asphalt2.mp3'],
+
+
 ];
 
 var SoundFXToLoad = [
-  [1, 2],
-  [3, 4],
-  [5, 6]
+  ['elevator_sound', 'assets/elevator_sound.wav'],
+  ['click_sound', 'assets/click_sound.wav'],
+
+
 ];
 
 
