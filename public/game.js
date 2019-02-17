@@ -56,8 +56,8 @@ var MusicToLoad = [
 var SoundFXToLoad = [
   ['elevator_sound', 'assets/elevator_sound.wav'],
   ['click_sound', 'assets/click_sound.wav'],
-  ['aibackground', 'assets/AIbackground.wav'],
-  ['gameover', 'assets/Game Over.wav']
+  ['aibackground', 'assets/aibackground.wav'],
+  ['gameover', 'assets/gameover.wav']
 ];
 
 
