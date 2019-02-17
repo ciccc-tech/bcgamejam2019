@@ -189,14 +189,14 @@ class DefaultScene extends BaseScene
     preload ()
     {
       this.log("Preload Called", this.name);
-      this.load.audio('aibackground','assets/AIbackground.wav');
+      // this.load.audio('aibackground','assets/aibackground.wav');
     }
 
     create ()
     {
         this.log("Create Called", this.name);
-        var music = this.sound.add('aibackground');
-        music.play();
+        // var music = this.sound.add('aibackground');
+        // music.play();
 
     }
 
@@ -276,6 +276,8 @@ class GameScene extends BaseScene
 
     preload ()
       {
+        this.load.audio('aibackground','assets/aibackground.wav');
+
         this.log("preload Called",this.name);
         Scene._preloadAssetImages(this,ImagesToLoad);
         Scene._preloadAssetSprites(this,SpritesToLoad);
@@ -284,6 +286,9 @@ class GameScene extends BaseScene
 
     create ()
       {
+        var music = this.sound.add('aibackground');
+        music.play();
+
       this.log("Create Called",this.name);
       this.input.mouse.capture = true;
       //  A simple background for our game
