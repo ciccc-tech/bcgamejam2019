@@ -1,0 +1,28 @@
+.navBar {
+    text-align: center;
+    background-color: aqua;
+    box-shadow: 2px 0px 2px black;
+    height: 70px;
+    margin: 0px;
+    line-height: 70px;
+    
+}
+
+.navBar li {
+    display: inline-block;
+    vertical-align: middle;
+
+}
+
+.navBar a {
+    text-decoration: none;
+    font-size: 40px;
+    padding-right: 5px;
+    margin-right: 45px;
+    
+}
+
+body {
+    margin: 0;
+
+}
