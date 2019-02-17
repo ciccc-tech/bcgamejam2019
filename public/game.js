@@ -29,7 +29,7 @@ function preload ()
 function create ()
 {
     //  A simple background for our game
-    this.add.image(668, 384, 'background');
+    this.add.image((config.width / 2), (config.height / 2), 'background');
 
 
 }
