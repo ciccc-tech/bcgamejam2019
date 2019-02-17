@@ -34,7 +34,6 @@ function preload()
 }
 
 
-var card;
 var dropZone;
 var dragPosition;
 
@@ -50,7 +49,6 @@ function create()
     dropZone.width = 300;
     dropZone.height = 600;
 
-    card = game.add.sprite(100, 100, 'eye');
 
         if (this.input.mouse.locked)
         {
