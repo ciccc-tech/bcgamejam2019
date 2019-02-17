@@ -8,13 +8,17 @@ var config = {
         default: 'arcade',
         arcade: {
             gravity: { y: 0 },
-            debug: false
+
+            debug: true,
+            fps: 100
         }
     },
     scene: {
+        init: init,
         preload: preload,
         create: create,
-        update: update
+        update: update,
+        render: render
     }
 };
 
@@ -35,12 +39,17 @@ var game = new Phaser.Game(config);
 //It's called before preload, create or anything else.
 //If you need to route the game away to another State you could do so here,
 //or if you need to prepare a set of variables or objects before the preloading starts.
-init()
+function init()
 {
   this.background = {}
   this.building = {}
   this.elevator_room = {}
   this.elevator = {}
+  this.characters = []
+  this.charCount = 10;
+
+
+
 }
 
 
@@ -52,36 +61,30 @@ init()
 // This only happens if you've set one or more assets to load in the preload method.
 //The difference between loadRender and render is that any objects you render in this method
 // you must be sure their assets exist first.
-loadRender()
+function loadRender()
 {}
 
 
 
 //loadUpdate is called during the Loader process.
 // This only happens if you've set one or more assets to load in the preload method.
-loadUpdate()
+function loadUpdate()
 {}
 
 
 //This method will be called if the core game loop is paused.
-paused()
+function paused()
 {}
 
 
 // pauseUpdate is called while the game is paused instead of preUpdate, update and postUpdate.
-pauseUpdate()
+function pauseUpdate()
 {}
 
 
-//preload is called first. Normally you'd use this to load your game assets
-//(or those needed for the current State)
-// You shouldn't create any objects in this method that require assets that you're also loading in this method,
-// as they won't yet be available.
-preload()
-{}
 
 //The preRender method is called after all Game Objects have been updated, but before any rendering takes place.
-preRender()
+function preRender()
 {}
 
 
@@ -89,29 +92,31 @@ preRender()
 // However the render method is called AFTER the game renderer and plugins have rendered,
 // so you're able to do any final post-processing style effects here. Note that this happens before plugins
 // postRender takes place.
-render()
-{}
+function render()
+{
+
+}
 
 
 // If your game is set to Scalemode RESIZE then each time the browser resizes it will call this function,
 // passing in the new width and height.
-resize()
+function resize()
 {}
 
 //This method will be called when the core game loop resumes from a paused state.
-resumed()
+function resumed()
 {}
 
 
 //This method will be called when the State is shutdown (i.e. you switch to another state from this one).
-shutdown()
+function shutdown()
 {}
 
 
 //The update method is left empty for your own use.
 //It is called during the core game loop AFTER debug, physics, plugins and the Stage have had their preUpdate methods
 //called. If is called BEFORE Stage, Tweens, Sounds, Input, Physics, Particles and Plugins have had their postUpdate methods called.
-update()
+function update()
 {}
 
 
@@ -121,7 +126,11 @@ update()
 
 
 
-// this function is called by phaser after (new PhaserGame.....) and is load to preload the assets we will need.
+//preload is called first. Normally you  var x = 10;'d use this to load your game assets
+//(or those needed for the current State)
+// You shouldn't create any objects in this method that require assets that you're also loading in this method,
+// as they won't yet be available.
+
 function preload ()
   {
     // load image that is the background layer
@@ -136,6 +145,13 @@ function preload ()
   // load the image that represent our 'elevator room'
   this.load.image('elevator', 'assets/elevator.png');
 
+  // load the character
+  this.load.image('character', 'assets/character.png');
+
+  // load the pointer
+  this.load.image('pointer', 'assets/pointer.png');
+
+
   }
 
 // create is called once preload has completed,
@@ -143,12 +159,30 @@ function preload ()
 
 function create ()
     {
-    //  A simple background for our game
 
+    this.input.mouse.capture = true;
+
+
+    //  A simple background for our game
     this.background =      this.add.image((config.width / 2), (config.height / 2), 'background');
     this.building =        this.add.image((config.width / 1.5), (config.height / 2), 'building');
     this.elevator_room =   this.add.image((config.width/ 2.8), (config.height / 2), 'elevator_room');
     this.elevator =        this.add.image((config.width/2.8), (config.height / 1.175), 'elevator');
+
+
+    this.pointer =        this.add.sprite((config.width/2), (config.height / 2), 'pointer');
+     this.input.mouse.capture = true;
+
+
+    // draw characters
+    var x = 10;
+    for (var i = 0; i < this.charCount; i++)
+        {
+        var aSprite = this.add.sprite(x, 10, 'character')
+        x = x + 10;
+        this.characters.push(aSprite);
+
+      }
 
     }
 
@@ -156,5 +190,6 @@ function create ()
 // this function is called per frame and is used to 'update' game state
 function update ()
   {
+
 
   }
