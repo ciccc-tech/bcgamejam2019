@@ -176,11 +176,15 @@ class BaseScene extends Scene
 class DefaultScene extends BaseScene
   {
 
+
     constructor ()
     {
         super('DefaultScene');
         this.name = 'DefaultScene';
         this.log("Constructor Called",this.name);
+
+        // load the next scene after 3 seconds
+        setTimeout(function(){   game.scene.start('GameScene'); }, 3000);
     }
 
     init ()
@@ -196,6 +200,7 @@ class DefaultScene extends BaseScene
     create ()
     {
         this.log("Create Called", this.name);
+          this.background = new BackgroundWidget(this,'background',(config.width / 2), (config.height / 2));
 
     }
 
@@ -218,6 +223,7 @@ class TitleScene extends BaseScene
         super('TitleScene');
         this.name = 'TitleScene';
         this.log("Constructor Called",this.name);
+
     }
 
     init ()
@@ -228,11 +234,15 @@ class TitleScene extends BaseScene
     preload ()
     {
         this.log("preload Called",this.name);
+        Scene._preloadAssetImages(this,ImagesToLoad);
+        Scene._preloadAssetSprites(this,SpritesToLoad);
+
     }
 
     create ()
     {
           this.log("Create Called",this.name);
+
     }
 
     update(time,delta)
@@ -429,7 +439,7 @@ var config = {
         }
     },
 
-    scene: [GameScene, DefaultScene,TitleScene]
+    scene: [DefaultScene,GameScene, TitleScene]
 };
 // =====================================================================================================
 
