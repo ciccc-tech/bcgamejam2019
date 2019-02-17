@@ -4,7 +4,8 @@ var API_StartGame = 'https://bcgamejam2019.herokuapp.com/game/start'
 
 
 var ImagesToLoad = [
-  ['background', 'assets/background.png'],
+  ['background_a', 'assets/background_a.png'],
+  ['background_b', 'assets/background_b.png'],
   ['building', 'assets/building.png'],
   ['elevator', 'assets/elevator.png'],
   ['elevator_room', 'assets/elevator_room.png'],
