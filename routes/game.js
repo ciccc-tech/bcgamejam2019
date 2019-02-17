@@ -63,7 +63,7 @@ var saveFile = function(id, content) {
         console.log("The file " + get_file_name(id) + " has been saved!");
         console.log(fs.statSync(get_file_name(id)).mtimeMs);
     });
-    
+
 }
 
 var generate_room = function(id=0, light_status=false, people_status=false){
@@ -217,7 +217,7 @@ var gameOver = function(building_id){
 }
 
 var updateRoomLightOn = function(id_building, id_room){
-    building_file = JSON.parse(fs.readFileSync(get_file_name(id_building), 'utf8'));
+    building_file = retrieveBuilding(id_building);
     for (i=0 ; i < building_file.rooms.length; i++){
         if (building_file.rooms[i].id == id_room){//Changing lights to on and off
             building_file.rooms[i].light = true;
@@ -233,10 +233,13 @@ var updateRoomLightOn = function(id_building, id_room){
 }
 
 var updateRoomLightOff = function(id_building, id_room){
-    building_file = JSON.parse(fs.readFileSync(get_file_name(id_building), 'utf8'));
+    building_file = retrieveBuilding(id_building);
     for (i=0 ; i < building_file.rooms.length; i++){
         if (building_file.rooms[i].id == id_room){//Changing lights to on and off
-            building_file.rooms[i].light = false;
+            if(building_file.rooms[i].light){
+              building_file.rooms[i].light = false;
+              increaseBuildingPower(id_building, 10);
+            }
         };
     };
     fs.writeFile(get_file_name(id_building), JSON.stringify(building_file), function(err) {
@@ -249,7 +252,7 @@ var updateRoomLightOff = function(id_building, id_room){
 }
 
 var getCurrentLightsOnPercentage = function(id_building){
-    building_file = JSON.parse(fs.readFileSync(get_file_name(id_building), 'utf8'));
+    building_file = retrieveBuilding(id_building);
     room_qty = building_file.rooms.length;
     room_light_on_qty = 0;
     for (i=0; i < room_qty; i++){
@@ -260,13 +263,22 @@ var getCurrentLightsOnPercentage = function(id_building){
     return 100*(room_light_on_qty/room_qty);
 };
 
-var decreaseBuildingPower = function(id) {
-    building = JSON.parse(fs.readFileSync(get_file_name(id), 'utf8'));
+var decreaseBuildingPower = function(building_id) {
+    building = retrieveBuilding(building_id);
     current_power = building.current_power;
-    for (i in building.rooms) {
-        if((!i.people) && i.light){
+    for (i=0; i < building.rooms.length; i++) {
+        if((!building.rooms[i].people) && building.rooms[i].light){
             current_power--;
-            updateBuildingPower(id, current_power);
+            updateBuildingPower(building_id, current_power);
         }
     }
 };
+
+var increaseBuildingPower = function(building_id, power_qty = 10){
+    building = retrieveBuilding(building_id);
+    current_power = building.current_power;
+    for(i=0; i<power_qty; i++){
+        current_power++;
+    }
+    updateBuildingPower(building_id, current_power);
+}
