@@ -9,7 +9,7 @@ function preload()
     this.load.baseURL = 'localhost:3000';
     this.load.crossOrigin = 'anonymous';
 
-    this.load.image('background', '/assets/background.png');
+    this.load.image('background', './assets/background.png');
     // this.load.image('bar_color', '/assets/bar_color.png');
     // this.load.image('bar_frame', '/assets/bar_frame.png');
     // this.load.image('building', '/assets/building.png');
@@ -104,8 +104,3 @@ function render ()
  {
 
 }
-
-
-
-
-  var game = new Phaser.Game(config);
