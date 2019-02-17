@@ -7,8 +7,7 @@ var ImagesToLoad = [
   ['background', 'assets/background.png'],
   ['building', 'assets/building.png'],
   ['elevator_room', 'assets/elevator_room.png'],
-<<<<<<< HEAD
-=======
+
   ['bar_color', 'assets/bar_color.png'],
   ['bar_frame', 'assets/bar_frame.png'],
   ['calendar', 'assets/calendar.png'],
@@ -33,9 +32,6 @@ var ImagesToLoad = [
   ['time_frame', 'assets/time_frame.png'],
   ['walk-asphalt2', 'assets/walk-asphalt2.mp3'],
   ['walk_block', 'assets/walk_block.png']
-
-
->>>>>>> origin/master
 ];
 
 
