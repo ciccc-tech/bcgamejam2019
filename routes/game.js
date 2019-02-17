@@ -13,6 +13,16 @@ router.get('/:buildingId', function(req, res, next) {
     res.json(retrieveBuilding(req.params['buildingId']));
 });
 
+/* GET trun light on*/
+router.get('/:buildingId/lighton/:roomId', function(req, res, next) {
+    res.json(updateRoomLightOn(req.params['buildingId'], req.params['roomId']));
+});
+
+/* GET trun light off*/
+router.get('/:buildingId/lightoff/:roomId', function(req, res, next) {
+    res.json(updateRoomLightOff(req.params['buildingId'], req.params['roomId']));
+});
+
 router.get('/end', function(req, res, next) {
   res.send(gameOver());
 });
@@ -81,18 +91,6 @@ var randomRooms = function(room_qty = 20, difficulty_percentage = 10){
     return rooms_random;
 };
 
-
-var saveBuilding = function(id, content){
-    //storing data from the game on a file
-    fs.writeFile(get_file_name(id), JSON.stringify(content), function(err) {
-        if(err) {
-            return console.log(err);
-        }
-
-        console.log("The file " + get_file_name(id) + " was saved!");
-    });
-}
-
 var spentPower = function(power_current, power_spent){
     power_current -= power_spent;
     if (power_current < 0){
@@ -115,6 +113,17 @@ var gameOver = function(){
   	return "GAME OVER!";
 }
 
+var saveBuilding = function(id, content){
+    //storing data from the game on a file
+    fs.writeFile(get_file_name(id), JSON.stringify(content), function(err) {
+        if(err) {
+            return console.log(err);
+        }
+
+        console.log("The file " + get_file_name(id) + " was saved!");
+    });
+}
+
 var retrieveBuilding = function(id){
     return JSON.parse(fs.readFileSync(get_file_name(id), 'utf8'));
 }
@@ -130,4 +139,36 @@ var updateBuildingPower = function(id, new_current_power){
         console.log("The file " + get_file_name(id) + " was saved!");
     });
 
+}
+
+var updateRoomLightOn = function(id_building, id_room){
+    building_file = JSON.parse(fs.readFileSync(get_file_name(id_building), 'utf8'));
+    for (i=0 ; i < building_file.rooms.length; i++){
+        if (building_file.rooms[i].id == id_room){//Changing lights to on and off
+            building_file.rooms[i].light = true;
+        };
+    };
+    fs.writeFile(get_file_name(id_building), JSON.stringify(building_file), function(err) {
+        if(err) {
+            return console.log(err);
+        }
+
+        console.log("The file " + get_file_name(id_building) + " was saved!");
+    });
+}
+
+var updateRoomLightOff = function(id_building, id_room){
+    building_file = JSON.parse(fs.readFileSync(get_file_name(id_building), 'utf8'));
+    for (i=0 ; i < building_file.rooms.length; i++){
+        if (building_file.rooms[i].id == id_room){//Changing lights to on and off
+            building_file.rooms[i].light = false;
+        };
+    };
+    fs.writeFile(get_file_name(id_building), JSON.stringify(building_file), function(err) {
+        if(err) {
+            return console.log(err);
+        }
+
+        console.log("The file " + get_file_name(id_building) + " was saved!");
+    });
 }
