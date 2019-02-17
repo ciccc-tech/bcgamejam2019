@@ -118,3 +118,16 @@ var gameOver = function(){
 var retrieveBuilding = function(id){
     return JSON.parse(fs.readFileSync(get_file_name(id), 'utf8'));
 }
+
+var updateBuildingPower = function(id, new_current_power){
+    building_file = JSON.parse(fs.readFileSync(get_file_name(id), 'utf8'));
+    building_file.current_power = new_current_power;
+    fs.writeFile(get_file_name(id), JSON.stringify(building_file), function(err) {
+        if(err) {
+            return console.log(err);
+        }
+
+        console.log("The file " + get_file_name(id) + " was saved!");
+    });
+
+}
