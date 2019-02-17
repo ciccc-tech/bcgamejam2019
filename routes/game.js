@@ -87,7 +87,7 @@ var building_default_params = {
 
 var generateBuilding =  function(building_params, power_params){
     new_rooms = []
-    number_rooms = building_default_paramss.floors * power_default_params.rooms;
+    number_rooms = building_default_params.floors * building_default_params.rooms;
     rooms_with_people = randomRooms(number_rooms);
     for (i = 0; i < number_rooms; i++) {
         new_room = []
@@ -110,9 +110,9 @@ var generateBuilding =  function(building_params, power_params){
     return new_building;
 };
 
-var randomRooms = function(room_qty = (building_default_params.floors * building_default_params.rooms), difficulty_percentage = 10){
+var randomRooms = function(room_qty = 20, difficulty_percentage = 10){
     rooms_random = [];
-    difficulty = room_qty*(difficulty_percentage/100)
+    difficulty = room_qty*(difficulty_percentage/100);
     while (rooms_random.length < difficulty) {
         //generating random number btw 0 and room_qty-1
         random_number = Math.floor((Math.random() * room_qty-1) + 1);
@@ -120,6 +120,7 @@ var randomRooms = function(room_qty = (building_default_params.floors * building
             rooms_random.push(random_number);
         };
     };
+    console.log(rooms_random);
     return rooms_random;
 };
 
@@ -189,7 +190,7 @@ var updateBuildingPower = function(id, new_current_power){
 
 var startGame = function(id) {
     var game = setInterval( function(){
-        console.log("Cycle of " + id)
+        // console.log("Cycle of " + id)
         if (checkGameOver(id)) {
             gameOver(id);
             /* Stop the loop */
