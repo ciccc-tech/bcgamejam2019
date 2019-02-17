@@ -200,12 +200,12 @@ class DefaultScene extends BaseScene
     create ()
     {
         this.log("Create Called", this.name);
-<<<<<<< HEAD
+
           this.background = new BackgroundWidget(this,'background',(config.width / 2), (config.height / 2));
-=======
+
         var music = this.sound.add('aibackground');
         music.play();
->>>>>>> origin/master
+
 
     }
 
