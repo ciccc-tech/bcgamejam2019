@@ -189,10 +189,9 @@ class DefaultScene extends BaseScene
     preload ()
     {
       this.log("Preload Called", this.name);
-      this.load.audio('aibackground', [
-     'assets/audio/oedipus_wizball_highscore.ogg',
+      this.load.audio('aibackground',
      'assets/AIbackground.wav'
-      ]);
+      );
     }
 
     create ()
