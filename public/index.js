@@ -3,6 +3,9 @@ var mousePos = {}
 var sprite;
 var lockText;
 
+
+
+
 function preload()
 {
 
@@ -89,16 +92,7 @@ function onDragStop(sprite, pointer) {
 
 }
 
-function update ()
-{
-}
 
 function render ()
 {
-}
-
-
-function render ()
- {
-
 }
