@@ -42,13 +42,17 @@ body {
     margin: 0;
 }
 
-footer {
+.footer li {
+    margin: 0;
     position: fixed;
     bottom: 0;
     width: 100%;
     background-color: #bbede8;
     color: #000000;
     text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+
  }
 
  .fa {
