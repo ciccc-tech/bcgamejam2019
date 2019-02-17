@@ -189,14 +189,14 @@ class DefaultScene extends BaseScene
     preload ()
     {
       this.log("Preload Called", this.name);
-      // this.load.audio('aibackground','assets/AIbackground.wav');
+      this.load.audio('aibackground','assets/AIbackground.wav');
     }
 
     create ()
     {
         this.log("Create Called", this.name);
-        // var music = this.sound.add('aibackground');
-        // music.play();
+        var music = this.sound.add('aibackground');
+        music.play();
 
     }
 
@@ -229,15 +229,12 @@ class TitleScene extends BaseScene
     preload ()
     {
         this.log("preload Called",this.name);
-        this.load.audio('aibackground','assets/AIbackground.wav');
 
     }
 
     create ()
     {
           this.log("Create Called",this.name);
-          var music = this.sound.add('aibackground');
-          music.play();
     }
 
     update(time,delta)
