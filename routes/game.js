@@ -5,11 +5,11 @@ const uuidv1 = require('uuid/v1');
 
 /* GET game states. */
 router.get('/start', function(req, res, next) {
-  res.json(generateBuilding(building_default_params));
+  res.json(generateBuilding(building_default_params, power_default_params));
 });
 
 router.get('/end', function(req, res, next) {
-  res.send('game over');
+  res.send(gameOver());
 });
 
 module.exports = router;
@@ -24,9 +24,9 @@ var generate_room = function(id=0, light_status=false, people_status=false){
     return room;
 };
 
-var power = {
+var power_default_params = {
     "total": 100,
-    "current": 100
+    "current": 80
 };
 
 var building_default_params = {
@@ -34,8 +34,8 @@ var building_default_params = {
     "rooms": 2
 };
 
-var generateBuilding =  function(building_params){
-
+var generateBuilding =  function(building_params, power_params){
+    current_building_power = power_default_params.current;
     new_rooms = []
     number_rooms = building_params.floors * building_params.rooms;
     rooms_with_people = randomRooms(number_rooms);
@@ -50,7 +50,9 @@ var generateBuilding =  function(building_params){
     };
     new_building = {
         "id": uuidv1(), //generating random id
+        "current_power": current_building_power,
         "rooms": new_rooms
+
     };
     saveBuilding(new_building['id'], new_building);
     return new_building;
@@ -79,5 +81,27 @@ var saveBuilding = function(id, content){
 
         console.log("The file was saved!");
     });
+
+var spentPower = function(power_current, power_spent){
+    power_current -= power_spent;
+    if (power_current < 0){
+        return gameOver();
+    } else {
+        return power_current;
+    };
+};
+
+var gainPower = function(power_total, power_current, power_gain){
+    power_current += power_gain;
+    if (power_current>=power_total){
+        return power_total;
+    } else{
+        return power_current;
+    };
+}
+
+var gameOver = function(){
+  	return "GAME OVER!";
+}
 
 }
