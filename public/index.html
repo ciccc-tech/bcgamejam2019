@@ -1,6 +1,6 @@
 <header>
    <script src="//cdn.jsdelivr.net/npm/phaser@3.16.2/dist/phaser.js"></script>
-    <script src="http://localhost:3000/index.js"></script>
+  <script src="http://localhost:3000/index.js"></script>
 
 
     <h1>HOME | PLAY | HIGHSCORES</h1>
@@ -8,7 +8,7 @@
 <body>
 
   <script type="text/javascript">
-    var config = {
+    let config = {
         type: Phaser.AUTO,
         width: 800,
         height: 600,
@@ -24,7 +24,8 @@
         }
     };
 
-    var game = new Phaser.Game(config);
+    var game = new Phaser.Game(this.config);
+
 
   </script>
 </body>

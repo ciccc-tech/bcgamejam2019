@@ -28,4 +28,6 @@ app.use('/game', gameRouter);
 app.use('/lights', lightsRouter);
 app.use('/rooms', roomsRouter);
 
+
+
 module.exports = app;
