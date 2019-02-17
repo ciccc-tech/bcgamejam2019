@@ -315,14 +315,25 @@ class GameScene extends BaseScene
 
     preload ()
       {
+
         this.log("preload Called",this.name);
         Scene._preloadAssetImages(this,ImagesToLoad);
         Scene._preloadAssetSprites(this,SpritesToLoad);
+
+        //Shimba added this part for the interface - start
+        this.load.image('elevator','assets/elevator.png');
+        //Shimba added this part for the interface - start
+
 
     }
 
     create ()
       {
+      //Shimba added this part for the interface - start
+      this.add.image((config.width/ 2), (config.height / 2), 'elevator');
+      //Shimba added this part for the interface -end
+
+
       this.log("Create Called",this.name);
       this.input.mouse.capture = true;
       //  A simple background for our game
