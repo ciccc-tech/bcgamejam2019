@@ -433,7 +433,7 @@ class GameScene extends BaseScene
 var config = {
     type: Phaser.AUTO,
     width: 1336,
-    height: 768,
+    height: 720,
     zoom: 1.1,
     resolution: 1,
     seed : 42,
