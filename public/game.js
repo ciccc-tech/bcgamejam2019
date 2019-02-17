@@ -197,8 +197,7 @@ class DefaultScene extends BaseScene
     create ()
     {
         this.log("Create Called", this.name);
-        var music = this.sound.add('theme');
-
+        var music = this.sound.add('aibackground');
         music.play();
 
     }
@@ -432,6 +431,10 @@ var config = {
             fps: 30
         }
     },
+    audio:
+    {
+    disableWebAudio: true
+  },
 
     scene: [GameScene, DefaultScene,TitleScene]
 };
