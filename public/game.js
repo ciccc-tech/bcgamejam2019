@@ -1,8 +1,14 @@
+var API_StartGame = 'https://bcgamejam2019.herokuapp.com/game/start'
+
+
+
+
 var ImagesToLoad = [
   ['background', 'assets/background.png'],
   ['building', 'assets/building.png'],
   ['elevator', 'assets/elevator.png'],
   ['elevator_room', 'assets/elevator_room.png'],
+
   ['bar_color', 'assets/bar_color.png'],
   ['bar_frame', 'assets/bar_frame.png'],
   ['calendar', 'assets/calendar.png'],
@@ -27,8 +33,6 @@ var ImagesToLoad = [
   ['rough_sketch_ver1.2', 'assets/rough_sketch_ver1.2.jpg'],
   ['time_frame', 'assets/time_frame.png'],
   ['walk_block', 'assets/walk_block.png']
-
-
 ];
 
 
