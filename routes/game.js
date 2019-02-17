@@ -13,7 +13,7 @@ router.get('/start', function(req, res, next) {
     // core = new Core(new_building['id']);
     startGame(new_building['id']);
     // core.start();
-    res.json(generateBuilding(building_default_params, power_default_params));
+    res.json(new_building);
 });
 
 /* Test */
@@ -26,14 +26,12 @@ router.get('/:buildingId', function(req, res, next) {
     res.json(retrieveBuilding(req.params['buildingId']));
 });
 
-<<<<<<< HEAD
 /* GET current game state */
 router.get('/power/:buildingId', function(req, res, next) {
     // res.json(updateBuildingPower(req.params['buildingId'], req.params['currentPower']));
-    res.json(updateBuildingPower(req.params['buildingId'], 10));
+    res.json(updateBuildingPower(req.params['buildingId'], 0));
 });
 
-=======
 /* GET trun light on*/
 router.get('/:buildingId/lighton/:roomId', function(req, res, next) {
     res.json(updateRoomLightOn(req.params['buildingId'], req.params['roomId']));
@@ -43,7 +41,6 @@ router.get('/:buildingId/lighton/:roomId', function(req, res, next) {
 router.get('/:buildingId/lightoff/:roomId', function(req, res, next) {
     res.json(updateRoomLightOff(req.params['buildingId'], req.params['roomId']));
 });
->>>>>>> e2ea23f00cfd500ef15317be59156a5837b6f9ab
 
 router.get('/end', function(req, res, next) {
 
@@ -63,8 +60,8 @@ var saveFile = function(id, content) {
         if(err) {
             return console.log(err);
         }
-
         console.log("The file " + get_file_name(id) + " has been saved!");
+        console.log(fs.statSync(get_file_name(id)).mtimeMs);
     });
     
 }
@@ -90,7 +87,7 @@ var building_default_params = {
 
 var generateBuilding =  function(building_params, power_params){
     new_rooms = []
-    number_rooms = building_default_paramss.floors * power_default_params.rooms;
+    number_rooms = building_default_params.floors * building_default_params.rooms;
     rooms_with_people = randomRooms(number_rooms);
     for (i = 0; i < number_rooms; i++) {
         new_room = []
@@ -113,9 +110,9 @@ var generateBuilding =  function(building_params, power_params){
     return new_building;
 };
 
-var randomRooms = function(room_qty = (building_default_params.floors * building_default_params.rooms), difficulty_percentage = 10){
+var randomRooms = function(room_qty = 20, difficulty_percentage = 10){
     rooms_random = [];
-    difficulty = room_qty*(difficulty_percentage/100)
+    difficulty = room_qty*(difficulty_percentage/100);
     while (rooms_random.length < difficulty) {
         //generating random number btw 0 and room_qty-1
         random_number = Math.floor((Math.random() * room_qty-1) + 1);
@@ -123,6 +120,7 @@ var randomRooms = function(room_qty = (building_default_params.floors * building
             rooms_random.push(random_number);
         };
     };
+    console.log(rooms_random);
     return rooms_random;
 };
 
@@ -182,6 +180,7 @@ var retrieveBuilding = function(id){
 }
 
 var updateBuildingPower = function(id, new_current_power){
+    building_file = retrieveBuilding(id);
     building_file = JSON.parse(fs.readFileSync(get_file_name(id), 'utf8'));
     building_file.current_power = new_current_power;
 
@@ -190,34 +189,19 @@ var updateBuildingPower = function(id, new_current_power){
 }
 
 var startGame = function(id) {
-    game = setInterval( function(){
-        console.log("Cycle of " + id)
-        // TODO If the power reaches 0, br/e5b12940-32f5-11e9-802a-27cfdf6141a0eak the interval and end game.
-        // test = JSON.parse(fs.readFileSync(get_file_name(id), 'utf8'), {"flag": 'r+'} );
-        // console.log("Current test: " + test.current_power);
-        logPower(id);
-
+    var game = setInterval( function(){
+        // console.log("Cycle of " + id)
         if (checkGameOver(id)) {
             gameOver(id);
+            /* Stop the loop */
+            clearInterval(game);
         }
     }, cycle);
-    console.log(game);
-    return game;
+    return true;
 }
-
-var actions = function() {
-    console.log('cycle');
-}
-
 
 var checkGameOver = function(building_id) {
-    // building = retrieveBuilding(building_id);
-    building = JSON.parse(fs.readFileSync(get_file_name(building_id), 'utf8'), {"flag": 'r+'} );
-    fs.readFile(get_file_name(building_id), function (err, data) {
-        if (err) return console.error(err);
-            // console.log("Current PowerAsync: " + JSON.parse(data).current_power);
-    });
-    // console.log("Current Power: " + building.current_power);
+    building = retrieveBuilding(building_id);
     if (building.current_power < 1) {
         return true
     } else {
@@ -226,9 +210,10 @@ var checkGameOver = function(building_id) {
 }
 
 var gameOver = function(building_id){
-    building = JSON.parse(fs.readFileSync(get_file_name(building_id), 'utf8'));
+    building = retrieveBuilding(building_id);
     building.game_state = false;
-    saveFile(id, building);
+    saveFile(building_id, building);
+    console.log("Game Over!");
 }
 
 var updateRoomLightOn = function(id_building, id_room){
@@ -277,10 +262,10 @@ var getCurrentLightsOnPercentage = function(id_building){
 
 var decreaseBuildingPower = function(id) {
     building = JSON.parse(fs.readFileSync(get_file_name(id), 'utf8'));
-    current_power = building.current_power
-    for i in building.rooms {
+    current_power = building.current_power;
+    for (i in building.rooms) {
         if((!i.people) && i.light){
-            current_power--
+            current_power--;
             updateBuildingPower(id, current_power);
         }
     }

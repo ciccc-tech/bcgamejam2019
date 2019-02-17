@@ -43,10 +43,10 @@ Generate a building and return a JSON representation. [SAMPLE](samples/game/star
 
 Retrieve the current state of the game. [SAMPLE](samples/games/:buildingId)
 
-#### `/game/:buildingId/lighton/roomId`
+#### `/game/:buildingId/lighton/:roomId`
 
 Turn light of the room on
 
-#### `/game/:buildingId/lightoff/roomId`
+#### `/game/:buildingId/lightoff/:roomId`
 
 Turn light of the room off
