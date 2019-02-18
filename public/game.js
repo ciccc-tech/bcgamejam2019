@@ -334,11 +334,16 @@ class GameScene extends BaseScene
       //this.background =      this.add.image((config.width / 2), (config.height / 2), 'background');
       this.background = new BackgroundWidget(this,'background',(config.width / 2), (config.height / 2));
 
-      this.walls = [];
+      // this.walls = [];
 
       this.building =        this.add.image((config.width / 1.5), (config.height / 2), 'building');
       this.elevator_room =   this.add.image((config.width/ 2.8), (config.height / 2), 'elevator_room');
       this.elevator =        this.add.image((config.width/2.8), (config.height / 1.175), 'elevator');
+
+      //Shimba added this part for the interface - start
+      this.wall = this.add.image((config.width/ 2), (config.height / 2), 'wall');
+      //Shimba added this part for the interface -end
+
 
       // draw characters
       var x = 10;
