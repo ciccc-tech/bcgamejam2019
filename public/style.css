@@ -23,6 +23,7 @@ a:link {
   border: none;
   outline: none;
   text-decoration: none;
+  color: #bbede8;
 }
 ul{
   padding: 0;
@@ -66,9 +67,6 @@ h1{
   flex-direction: column;
 }
 
-.navBar a:hover {
-  color: #67fff0;
-}
 
 .navBar i:hover {
   color: #67fff0;
