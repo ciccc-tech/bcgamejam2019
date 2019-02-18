@@ -323,32 +323,29 @@ class GameScene extends BaseScene
         this.log("preload Called",this.name);
         Scene._preloadAssetImages(this,ImagesToLoad);
         Scene._preloadAssetSprites(this,SpritesToLoad);
-
-        //Shimba added this part for the interface - start
-        this.load.image('elevator','assets/elevator.png');
-        //Shimba added this part for the interface - start
-
+        Scene._preloadAssetMusic(this, MusicToLoad);
+        Scene._preloadAssetFX(this,SoundFXToLoad)
 
     }
 
     create ()
       {
-      //Shimba added this part for the interface - start
-      this.add.image((config.width/ 2), (config.height / 2), 'elevator');
-      //Shimba added this part for the interface -end
-
-
       this.log("Create Called",this.name);
       this.input.mouse.capture = true;
-      //  A simple background for our game
-      //this.background =      this.add.image((config.width / 2), (config.height / 2), 'background');
+       //A simple background for our game
+      this.background = this.add.image((config.width / 2), (config.height / 2), 'background');
       this.background = new BackgroundWidget(this,'background',(config.width / 2), (config.height / 2));
 
-      this.walls = [];
+      // this.walls = [];
 
       this.building =        this.add.image((config.width / 1.5), (config.height / 2), 'building');
       this.elevator_room =   this.add.image((config.width/ 2.8), (config.height / 2), 'elevator_room');
       this.elevator =        this.add.image((config.width/2.8), (config.height / 1.175), 'elevator');
+
+      //Shimba added this part for the interface - start
+      this.wall = this.add.image((config.width/ 2), (config.height / 2), 'wall');
+      //Shimba added this part for the interface -end
+
 
       // draw characters
       var x = 10;
