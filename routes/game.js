@@ -184,7 +184,7 @@ var updateBuildingPower = function(id, new_current_power){
     building_file = JSON.parse(fs.readFileSync(get_file_name(id), 'utf8'));
     building_file.current_power = new_current_power;
 
-    saveFile(id, building_file);
+    saveBuilding(id, building_file);
     return building_file;
 }
 
@@ -212,7 +212,7 @@ var checkGameOver = function(building_id) {
 var gameOver = function(building_id){
     building = retrieveBuilding(building_id);
     building.game_state = false;
-    saveFile(building_id, building);
+    saveBuilding(building_id, building);
     console.log("Game Over!");
 }
 
@@ -281,4 +281,18 @@ var increaseBuildingPower = function(building_id, power_qty = 10){
         current_power++;
     }
     updateBuildingPower(building_id, current_power);
+}
+
+var updateRooms = function(building_id){
+    number_rooms = building_default_params.floors * building_default_params.rooms;
+    rooms_with_people = randomRooms(number_rooms);
+    setPeopleInRooms(building_id, rooms_with_people);
+}
+
+var setPeopleInRooms = function(building_id, rooms_with_people){
+    building = retrieveBuilding(building_id);
+    for (i in rooms_with_people) {
+        building.rooms[i].people_status = true;
+    };
+    saveBuilding(building_id, building);
 }
