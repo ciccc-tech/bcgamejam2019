@@ -1,56 +1,108 @@
+/* normal css */
+body{
+  font-size:1rem;
+  background-color: black;
+  background-image: url(assets/background2.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: white;
+  text-align: center;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+a:hover {
+  color: #67fff0;
+}
+
+a:visited {
+  color: white;
+}
+
+a:link {
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+ul{
+  padding: 0;
+  margin: 0;
+}
+
+li{
+  list-style: none;
+}
+
+h1{
+  font-size: 2.0rem;
+  font-weight: 600;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+
 .navBar {
-    text-align: center;
-    background-color: #000000;
-    box-shadow: 2px 0px 2px #000000;
-    height: 70px;
-    margin: 0px;
-    line-height: 70px;
-    
+  text-align: center;
+  background-color: #000000;
+  box-shadow: 2px 0px 2px #000000;
+  height: 70px;
+  margin: 0px;
+  line-height: 70px;
 }
 
 .navBar li {
-    display: inline-block;
-    vertical-align: middle;
-
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .navBar a, i {
-    text-decoration: none;
-    font-size: 40px;
-    padding-right: 5px;
-    margin-right: 45px;
-    font-family: 'Rajdhani';
-    color: #bbede8;
-    -webkit-transition: color 0.5s;
-    transition: color 0.5s;
-    display: flex;
-    flex-direction: column;
-    
+  font-size: 40px;
+  padding-right: 5px;
+  margin-right: 45px;
+  font-family: 'Rajdhani';
+  color: #bbede8;
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
+  display: flex;
+  flex-direction: column;
 }
 
 .navBar a:hover {
-    color: #67fff0;
-    
+  color: #67fff0;
 }
 
 .navBar i:hover {
-    color: #67fff0;
-    
+  color: #67fff0;
 }
 
 body {
-    margin: 0;
+  margin: 0;
 }
 
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #bbede8;
-    color: #000000;
-    text-align: center;
- }
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
 
- .fa {
-     color: #bbede8;
- }
+.footer ul {
+  display: flex;
+  margin: 0 auto;
+}
+
+.footer ul li {
+  display: inline-block;
+  vertical-align: middle;
+  flex: 1 0 auto;
+  padding: 17px 10px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+}
+
+.fa {
+  color: #bbede8;
+}
