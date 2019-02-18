@@ -516,6 +516,17 @@ class BackgroundWidget extends GenericWidget
   }
 
 
+  // WIDGETS
+  class ElevatorWidget extends GenericWidget
+    {
+      constructor(inScene, imageName, posX, posY)
+      {
+        super(inScene,imageName,posX,posY);
+      }
+    }
+
+
+
 
 
 
