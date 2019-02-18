@@ -340,6 +340,11 @@ class GameScene extends BaseScene
       this.elevator_room =   this.add.image((config.width/ 2.8), (config.height / 2), 'elevator_room');
       this.elevator =        this.add.image((config.width/2.8), (config.height / 1.175), 'elevator');
 
+
+
+
+
+
       //Shimba added this part for the interface - start
       this.wall = this.add.image((config.width/ 2), (config.height / 2), 'wall');
       //Shimba added this part for the interface -end
@@ -357,6 +362,7 @@ class GameScene extends BaseScene
       this.add.text(20, config.height-20, 'Game Title: ' + config.title);
       this.add.text(300, config.height-20, config.url);
       this.add.text(config.width-250, config.height-20, config.version);
+      this.xxxx =        this.add.image(150, 150, 'wall_block');
 
       this.mousePointer = this.add.sprite(20, 300, 'pointer');
       this.input.mouse.disableContextMenu();
