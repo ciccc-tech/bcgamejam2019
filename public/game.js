@@ -341,9 +341,8 @@ class GameScene extends BaseScene
       this.elevator =        this.add.image((config.width/2.8), (config.height / 1.175), 'elevator');
 
       //Shimba added this part for the interface - start
-      this.wall = this.add.image((config.width/ 2), (config.height / 2), 'wall');
+      this.wall = this.add.image((config.width / 4), (config.height / 2), 'wall_block');
       //Shimba added this part for the interface -end
-
 
       // draw characters
       var x = 10;
