@@ -2,18 +2,18 @@ var express = require('express');
 var router = express.Router();
 const fs = require('fs');
 const uuidv1 = require('uuid/v1');
-const cycle = 500;
-// var core  = require('../core.js')
-const Core  = require('../core.js')
+// const cycle = 500;
+const cycle = 2000;
+/* This is how fast the game will be updated*/
+const difficulty_cycle = 2000;
 
 /* GET initial game state. */
 router.get('/start', function(req, res, next) {
-    // core.startGame();
     new_building = generateBuilding(building_default_params, power_default_params);
-    // core = new Core(new_building['id']);
-    startGame(new_building['id']);
-    // core.start();
-    res.json(new_building);
+    var game = startGame(new_building['id']);
+    // var game = startGame('1ebf8290-3323-11e9-a4fb-a32f15f08075');
+    // res.json(new_building);
+    res.send('test');
 });
 
 /* Test */
@@ -106,6 +106,7 @@ var generateBuilding =  function(building_params, power_params){
         "rooms": new_rooms
 
     };
+    console.log('generateBuilding');
     saveBuilding(new_building['id'], new_building);
     return new_building;
 };
@@ -120,7 +121,7 @@ var randomRooms = function(room_qty = 20, difficulty_percentage = 10){
             rooms_random.push(random_number);
         };
     };
-    console.log(rooms_random);
+    // console.log(rooms_random);
     return rooms_random;
 };
 
@@ -148,6 +149,9 @@ var gameOver = function(){
 
 var saveBuilding = function(id, content){
     //storing data from the game on a file
+    if (content.length < 0) {
+        return false;
+    }
     fs.writeFile(get_file_name(id), JSON.stringify(content), function(err) {
         if(err) {
             return console.log(err);
@@ -184,24 +188,49 @@ var updateBuildingPower = function(id, new_current_power){
     building_file = JSON.parse(fs.readFileSync(get_file_name(id), 'utf8'));
     building_file.current_power = new_current_power;
 
-    saveFile(id, building_file);
+    console.log('updateBuildingPower');
+    saveBuilding(id, building_file);
     return building_file;
 }
 
+/* Initiate a new game. This is basically the instantiation of the game */
 var startGame = function(id) {
     var game = setInterval( function(){
         // console.log("Cycle of " + id)
+
+        /**/
+
+        /* Keep checking if the game is over */
         if (checkGameOver(id)) {
             gameOver(id);
             /* Stop the loop */
             clearInterval(game);
         }
+        updateRooms(id);
     }, cycle);
+
+
+    // var update_room_loop = setInterval( function(){
+    //     console.log("Cycle of update_room_loop");
+    //     /**/
+
+    //     updateRooms(id);
+
+    //     // /* Keep checking if the game is over */
+    //     // if (checkGameOver(id)) {
+    //     //     gameOver(id);
+    //     //     /* Stop the loop */
+    //     // }
+    //     // clearInterval(game);
+    // }, difficulty_cycle);
+
     return true;
 }
 
 var checkGameOver = function(building_id) {
     building = retrieveBuilding(building_id);
+    // console.log('building');
+    // console.log(building);
     if (building.current_power < 1) {
         return true
     } else {
@@ -212,7 +241,8 @@ var checkGameOver = function(building_id) {
 var gameOver = function(building_id){
     building = retrieveBuilding(building_id);
     building.game_state = false;
-    saveFile(building_id, building);
+    console.log('gameOver');
+    saveBuilding(building_id, building);
     console.log("Game Over!");
 }
 
@@ -281,4 +311,66 @@ var increaseBuildingPower = function(building_id, power_qty = 10){
         current_power++;
     }
     updateBuildingPower(building_id, current_power);
+}
+
+var updateRooms = function(building_id){
+    number_rooms = building_default_params.floors * building_default_params.rooms;
+    rooms_with_people = randomRooms(number_rooms);
+    rooms_to_remove_people = randomRooms(number_rooms);
+    // these two functions below aren't working due to the file reading concurrency
+    // setPeopleInRooms(building_id, rooms_with_people);
+    // removePeopleFromRooms(building_id, rooms_to_remove_people);
+    // Using this temp function instead
+    movePeopleAround(building_id, rooms_with_people, rooms_to_remove_people);
+    console.log('rooms to update:');
+    console.log(rooms_with_people);
+    console.log(rooms_to_remove_people);
+    // console.log(retrieveBuilding(building_id));
+
+    // saveBuilding(building_id, building);
+}
+
+var setPeopleInRooms = function(building_id, rooms_with_people){
+    building = retrieveBuilding(building_id);
+    // console.log('rooms to update:');
+    // console.log(rooms_with_people);
+    // console.log(building);
+    for (var value of rooms_with_people) {
+        // console.log(building.rooms[value]);
+        building.rooms[value].people = true;
+    };
+    // console.log('setPeopleInRooms');
+    // console.log(building);
+    saveBuilding(building_id, building);
+    // process.exit();     
+}
+
+var removePeopleFromRooms = function(building_id, rooms_to_remove_people){
+    building = retrieveBuilding(building_id);
+    // console.log('rooms to update:');
+    // console.log(rooms_to_remove_people);
+    // console.log(building);
+    for (var value of rooms_to_remove_people) {
+        // console.log(building.rooms[value]);
+        building.rooms[value].people = false;
+    };
+    // console.log('setPeopleInRooms');
+    saveBuilding(building_id, building);
+    console.log(building);
+    // process.exit();     
+}
+
+var movePeopleAround = function (building_id, rooms_with_people, rooms_to_remove_people) {
+    building = retrieveBuilding(building_id);
+    for (var value of rooms_to_remove_people) {
+        // console.log(building.rooms[value]);
+        building.rooms[value].people = false;
+    };
+    for (var value of rooms_with_people) {
+        // console.log(building.rooms[value]);
+        building.rooms[value].people = true;
+        building.rooms[value].light = true;
+    };
+    saveBuilding(building_id, building);
+    console.log(building);
 }
