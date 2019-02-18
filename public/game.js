@@ -6,7 +6,7 @@ var API_StartGame = 'https://bcgamejam2019.herokuapp.com/game/start'
 var ImagesToLoad = [
   ['background_a', 'assets/background_a.png'],
   ['background_b', 'assets/background_b.png'],
-  ['building', 'assets/building.png'],
+  ['building', 'assets/background_b.png'],
   ['elevator', 'assets/elevator.png'],
   ['elevator_room', 'assets/elevator_room.png'],
   ['bar_color', 'assets/bar_color.png'],
@@ -228,7 +228,7 @@ class DefaultScene extends BaseScene
     {
         this.log("Create Called", this.name);
 
-          this.background = new BackgroundWidget(this,'background_a',(config.width / 2), (config.height / 2));
+        this.background = new BackgroundWidget(this,'background_a',(config.width / 2), (config.height / 2));
 
         this.music = this.sound.add('aibackground');
         this.music.play({loop:true});
@@ -266,8 +266,11 @@ class TitleScene extends BaseScene
     preload ()
     {
         this.log("preload Called",this.name);
-        Scene._preloadAssetImages(this,ImagesToLoad);
-        Scene._preloadAssetSprites(this,SpritesToLoad);
+
+              Scene._preloadAssetImages(this,ImagesToLoad);
+              Scene._preloadAssetSprites(this,SpritesToLoad);
+              Scene._preloadAssetMusic(this, MusicToLoad);
+              Scene._preloadAssetFX(this,SoundFXToLoad)
 
     }
 
