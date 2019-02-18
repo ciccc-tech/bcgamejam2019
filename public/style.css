@@ -42,7 +42,7 @@ body {
     margin: 0;
 }
 
-.footer li {
+.footer {
     margin: 0;
     position: fixed;
     bottom: 0;
@@ -52,6 +52,15 @@ body {
     text-align: center;
     display: inline-block;
     vertical-align: middle;
+    height: 70px;
+    line-height: 70px;
+
+ }
+
+ .footer li{
+    display: inline-block;
+    vertical-align: middle;
+
 
  }
 
