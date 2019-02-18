@@ -316,20 +316,61 @@ var increaseBuildingPower = function(building_id, power_qty = 10){
 var updateRooms = function(building_id){
     number_rooms = building_default_params.floors * building_default_params.rooms;
     rooms_with_people = randomRooms(number_rooms);
-    setPeopleInRooms(building_id, rooms_with_people);
+    rooms_to_remove_people = randomRooms(number_rooms);
+    // these two functions below aren't working due to the file reading concurrency
+    // setPeopleInRooms(building_id, rooms_with_people);
+    // removePeopleFromRooms(building_id, rooms_to_remove_people);
+    // Using this temp function instead
+    movePeopleAround(building_id, rooms_with_people, rooms_to_remove_people);
+    console.log('rooms to update:');
+    console.log(rooms_with_people);
+    console.log(rooms_to_remove_people);
+    // console.log(retrieveBuilding(building_id));
+
+    // saveBuilding(building_id, building);
 }
 
 var setPeopleInRooms = function(building_id, rooms_with_people){
     building = retrieveBuilding(building_id);
-    console.log('rooms to update:');
-    console.log(rooms_with_people);
-    console.log(building);
+    // console.log('rooms to update:');
+    // console.log(rooms_with_people);
+    // console.log(building);
     for (var value of rooms_with_people) {
-        console.log(building.rooms[value]);
+        // console.log(building.rooms[value]);
         building.rooms[value].people = true;
     };
-    console.log('setPeopleInRooms');
-    console.log(building);
+    // console.log('setPeopleInRooms');
+    // console.log(building);
     saveBuilding(building_id, building);
     // process.exit();     
+}
+
+var removePeopleFromRooms = function(building_id, rooms_to_remove_people){
+    building = retrieveBuilding(building_id);
+    // console.log('rooms to update:');
+    // console.log(rooms_to_remove_people);
+    // console.log(building);
+    for (var value of rooms_to_remove_people) {
+        // console.log(building.rooms[value]);
+        building.rooms[value].people = false;
+    };
+    // console.log('setPeopleInRooms');
+    saveBuilding(building_id, building);
+    console.log(building);
+    // process.exit();     
+}
+
+var movePeopleAround = function (building_id, rooms_with_people, rooms_to_remove_people) {
+    building = retrieveBuilding(building_id);
+    for (var value of rooms_to_remove_people) {
+        // console.log(building.rooms[value]);
+        building.rooms[value].people = false;
+    };
+    for (var value of rooms_with_people) {
+        // console.log(building.rooms[value]);
+        building.rooms[value].people = true;
+        building.rooms[value].light = true;
+    };
+    saveBuilding(building_id, building);
+    console.log(building);
 }
