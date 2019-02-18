@@ -6,7 +6,7 @@ var API_StartGame = 'https://bcgamejam2019.herokuapp.com/game/start'
 var ImagesToLoad = [
   ['background_a', 'assets/background_a.png'],
   ['background_b', 'assets/background_b.png'],
-  ['building', 'assets/background_b.png'],
+  ['building', 'assets/building.png'],
   ['elevator', 'assets/elevator.png'],
   ['elevator_room', 'assets/elevator_room.png'],
   ['bar_color', 'assets/bar_color.png'],
@@ -267,10 +267,6 @@ class TitleScene extends BaseScene
     {
         this.log("preload Called",this.name);
 
-              Scene._preloadAssetImages(this,ImagesToLoad);
-              Scene._preloadAssetSprites(this,SpritesToLoad);
-              Scene._preloadAssetMusic(this, MusicToLoad);
-              Scene._preloadAssetFX(this,SoundFXToLoad)
 
     }
 
@@ -323,21 +319,15 @@ class GameScene extends BaseScene
         this.log("preload Called",this.name);
         Scene._preloadAssetImages(this,ImagesToLoad);
         Scene._preloadAssetSprites(this,SpritesToLoad);
+        Scene._preloadAssetMusic(this, MusicToLoad);
+        Scene._preloadAssetFX(this,SoundFXToLoad)
 
-        //Shimba added this part for the interface - start
-        this.load.image('elevator','assets/elevator.png');
-        //Shimba added this part for the interface - start
 
 
     }
 
     create ()
       {
-      //Shimba added this part for the interface - start
-      this.add.image((config.width/ 2), (config.height / 2), 'elevator');
-      //Shimba added this part for the interface -end
-
-
       this.log("Create Called",this.name);
       this.input.mouse.capture = true;
       //  A simple background for our game
